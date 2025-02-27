@@ -119,6 +119,7 @@
                                     id="conAmdLabelContractType"
                                     text="Contract Type:"
                                     class="sapUiTinyMarginBegin"
+                                    visible="false"
                                 />
                                 <Input
                                     id="conAmdSelectContractType2"
@@ -126,6 +127,7 @@
                                     change="onSelectDropdown2"
                                     class="sapUiTinyMarginBegin"
                                     editable="false"
+                                    visible="false"
                                />
                             </VBox>
                             <!-- <VBox
@@ -161,6 +163,7 @@
                                             text="Sold To Party"
                                             required="true"
                                             textDirection="LTR"
+                                            visible="false"
                                         />
                                         <HBox id="conAmdSoldTPBox">
                                             <Input
@@ -169,6 +172,7 @@
                                             showValueHelp="true"
                                             valueHelpOnly="true"
                                             valueHelpRequest="onSoldToParty"
+                                            visible="false"
                                            />
                                             <Input
                                                 id="conAmdSoldTP_idDESC"
@@ -185,6 +189,7 @@
                                             text="Sales Organization"
                                             required="true"
                                             textDirection="LTR"
+                                            visible="false"
                                         />
                                         <HBox id="conAmdSalesORgBox">
                                             <Select
@@ -192,6 +197,7 @@
                                             width="200px"
                                             change=".onContractTypeChange"
                                             forceSelection="false"
+                                            visible="false"
                                             >
                                             <items>
                                                 <core:Item
@@ -216,12 +222,14 @@
                                             text="Distribution Channel"
                                             required="true"
                                             textDirection="LTR"
+                                            visible="false"
                                         />
                                         <HBox id="conAmdDistributionChannelBox">
                                              <Input
                                             id="conAmdInputDistributionChannel"
                                             width="200px"
                                             editable="false"
+                                            visible="false"
                                             />
                                             <Input
                                                 id="conAmdDistributionChannelDesc"
@@ -247,6 +255,7 @@
                                             text="Ship To Party"
                                             required="true"
                                             textDirection="LTR"
+                                            visible="false"
                                         />
                                         <HBox id="conAmdShipTPBox">
                                             <Input
@@ -255,6 +264,7 @@
                                             showValueHelp="true"
                                             valueHelpOnly="true"
                                             valueHelpRequest="onShipToParty"
+                                            visible="false"
                                             />
                                             <Input
                                                 id="conAmdShipTPDesc"
@@ -280,12 +290,14 @@
                                             text="Division"
                                             required="true"
                                             textDirection="LTR"
+                                            visible="false"
                                         />
                                         <HBox id="conAmdDivisionBox">
                                             <Input
                                             id="conAmdInputDivision"
                                             width="200px"
                                             editable="false"
+                                            visible="false"
                                             />
                                             <Input
                                                 id="conAmdDivisionDesc"
