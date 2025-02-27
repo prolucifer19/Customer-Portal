@@ -1,0 +1,137 @@
+<mvc:View controllerName="customerportal.controller.SuppInvoices"
+    xmlns:form="sap.ui.layout.form"
+    height="100%"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:u="sap.ui.unified"
+    xmlns:tnt="sap.tnt"
+    xmlns:filterbar="sap.ui.comp.filterbar"
+    xmlns:l="sap.ui.layout">
+    
+
+                        <ScrollContainer
+                        id="support_Invoice"
+                        horizontal="false"
+                        vertical="true"
+                        height="100%"
+                        >
+                        <OverflowToolbar id="supInOverflowToolbar">
+                            <Title
+                                id="supInTitleInvoiceSupport"
+                                text="Invoice Support"
+                                textAlign="Center"
+                            />
+                        </OverflowToolbar>
+                        <content>
+                            <filterbar:FilterBar
+                                id="supInFilterBarInvoice"
+                                search="onSearchInvoiceSupport"
+                                filterChange="onFilterChange"
+                            >
+                                <filterbar:filterGroupItems>
+                                    <filterbar:FilterGroupItem
+                                        id="supInFilterBillingNo"
+                                        name="BillingNo"
+                                        label="Billing No"
+                                        groupName="Group2"
+                                        visibleInFilterBar="true"
+                                    >
+                                        <filterbar:control>
+                                            <Input
+                                                id="supInBillingNoInput"
+                                                value=""
+                                                showValueHelp="true"
+                                                valueHelpRequest=".onValueHelpBilling"
+                                                liveChange="onBillingNoChange1"
+                                            />
+                                        </filterbar:control>
+                                    </filterbar:FilterGroupItem>
+
+                                    <filterbar:FilterGroupItem
+                                        id="supInFilterDateInvoice"
+                                        name="Billing Date"
+                                        label="Billing Date"
+                                        groupName="Group1"
+                                        visibleInFilterBar="true"
+                                    >
+                                        <filterbar:control>
+                                            <DatePicker
+                                                id="supInBillingDatePicker"
+                                                valueFormat="yyyy-MM-dd"
+                                                change="onBillingDateChange"
+                                                required="true"
+                                            />
+                                        </filterbar:control>
+                                    </filterbar:FilterGroupItem>
+                                </filterbar:filterGroupItems>
+                            </filterbar:FilterBar>
+                            <VBox
+                                id="supInVBoxSupportBilling"
+                                class="VboxTab"
+                                justifyContent="Start"
+                                alignItems="End"
+                                width="100%"
+                                alignContent="SpaceAround"
+                                height="500px"
+                                visible="false"
+                            >
+                                <Table
+                                    id="supInSupportInvoiceTable"
+                                    items="{invoiceModel>/}"
+                                    updateStarted="onBillingUpdateStarted2"
+                                    updateFinished="onBillingUpdateFinished2"
+                                    showNoData="true"
+                                    showUnread="true"
+                                    alternateRowColors="true"
+                                >
+                                    <columns>
+                                        <Column id="supInColumnBillingNumber">
+                                            <Text
+                                                id="supInTextBillingNumber"
+                                                text="Billing Number"
+                                            />
+                                        </Column>
+                                        <Column id="supInColumnBillingDate">
+                                            <Text
+                                                id="supInTextBillingDate"
+                                                text="Billing Date"
+                                            />
+                                        </Column>
+                                        <Column id="supInColumnAction">
+                                            <Text
+                                                id="supInTextAction"
+                                                text="Action"
+                                            />
+                                        </Column>
+                                    </columns>
+
+                                    <items>
+                                        <ColumnListItem
+                                            id="supInColumnListItemInvoice"
+                                        >
+                                            <cells>
+                                                <Text
+                                                    id="supInTextBillingNumberCell"
+                                                    text="{invoiceModel>BillingNumber}"
+                                                />
+                                                <Text
+                                                    id="supInTextBillingDateCell"
+                                                    text="{invoiceModel>BillingDate}"
+                                                />
+                                                <Button
+                                                    id="supInButtonCreateTicket"
+                                                    text="Create Ticket"
+                                                    press="onInvoiceTicketBtnPress"
+                                                />
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                            </VBox>
+                        </content>
+
+                    </ScrollContainer>
+
+</mvc:View>

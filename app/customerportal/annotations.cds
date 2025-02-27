@@ -1,0 +1,1 @@
+using customerportalservice as service from '../../srv/customerService';

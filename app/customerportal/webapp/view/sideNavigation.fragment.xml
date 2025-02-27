@@ -1,0 +1,14 @@
+<SideNavigation id="cusPorSideNavigation" xmlns="sap.tnt" xmlns:core="sap.ui.core" expanded="true" selectedKey="{/selectedKey}" itemSelect="onItemSelect">
+    <NavigationList id="cusPorSideNavigationListItem" items="{path: '/navigation'}">
+        <core:Fragment
+                fragmentName="customerportal.view.navigationList"
+                type="XML" />
+    </NavigationList>
+    <fixedItem>
+        <NavigationList id="cusPorSideNavigationListIte" items="{path: '/fixedNavigation'}">
+            <core:Fragment
+                    fragmentName="customerportal.view.navigationList"
+                    type="XML" />
+        </NavigationList>
+    </fixedItem>
+</SideNavigation>

@@ -1,0 +1,22 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <SelectDialog
+        id="billingValueHelp"
+        noDataText="Loading..."
+        title="Select Billing No."
+        search=".onValuSearchBilling"
+        liveChange=".onValueHelpSearchBillingSupport"
+        confirm="onValueHelpCloseBilling"
+        cancel="onValueHelpCloseBilling"
+         items="{invoiceModel>/}"
+        initialFocus="SearchField">
+        <StandardListItem 
+            id="IDGenStandardListItem1"
+            title="{invoiceModel>BillingNumber}"
+        
+            iconDensityAware="false"
+            iconInset="false"
+            type="Active" />
+    </SelectDialog>
+</core:FragmentDefinition>

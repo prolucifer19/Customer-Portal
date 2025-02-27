@@ -1,0 +1,26 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <SelectDialog
+        id="soldToParty"
+        noDataText="Loading..."
+        title="Select Sold To Party"
+        search="onValueHelpSearch2"
+        confirm="onValueHelpClose2"
+        cancel="onValueHelpClose2"
+        liveChange="onValueHelpSearch2"
+        growing="true"
+        growingThreshold="100000"
+        items="{/xGMSxVendor_Data_Nav}"
+    >
+        <StandardListItem
+            id="_IDGenStandardListItem2"
+            title="{Sold_Party}"
+            description="{Sold_Party_Text}"
+            iconDensityAware="false"
+            iconInset="false"
+            type="Active"
+        />
+    </SelectDialog>
+</core:FragmentDefinition>

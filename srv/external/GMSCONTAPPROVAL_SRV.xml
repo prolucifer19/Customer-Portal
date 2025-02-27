@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0"
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="GMS.CONTAPPROVAL_SRV" xml:lang="en" sap:schema-version="1"
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="SpHeader" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Refno"/>
+                </Key>
+                <Property Name="Refno" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Referance No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Vbeln" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="DocumentNo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Item" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Item" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Material" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DeliveryPoint" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Delivery Point" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RedeliveryPoint" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Redelivery Point" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ValidFrom" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Valid From" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ValidTo" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Valid To" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Profile" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Service Profile" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DeliveryDcq" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Delivery DCQ" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RedeliveryDcq" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="ReDelivery DCQ" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Path" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Path" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FuelPercentage" Type="Edm.Decimal" Nullable="false" Precision="5" Scale="2" sap:unicode="false" sap:label="Fuel%" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FuelLocation" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Fuel Location" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Contracttype" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Document Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Createdby" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Created By" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Createddate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Created Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Createdtime" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="Created Time" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Changedby" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Changed By" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Changeddate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Change Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Changedtime" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="Change Time" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="SPServpro" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Refno"/>
+                </Key>
+                <Property Name="Refno" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Referance No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Vbeln" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="DocumentNo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ItemNo" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Item" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ServiceParam" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Service Parameter" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ServProfile" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Service Profile" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ParamType" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Parameter Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ParamValue" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Parameter Value" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Createdby" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Created By" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Createddate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Change Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Createdtime" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="Created Time" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Changedby" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Changed By" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Changeddate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Change Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Changedtime" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="Change Time" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="SPClauseCode" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Refno"/>
+                </Key>
+                <Property Name="Refno" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Referance No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Vbeln" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="DocumentNo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ItemNo" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Item" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ClauseCode" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Service Parameter" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ValidFrom" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Valid From" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ValidTo" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Valid To" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ThresholdP" Type="Edm.Decimal" Nullable="false" Precision="3" Scale="0" sap:unicode="false" sap:label="Threshold Perc" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ThreshRef" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Service Parameter" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Remark" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Remark" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CalculatedValue" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Calculated Value" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Createdby" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Created By" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Createddate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Created Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Createdtime" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="Created Time" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Changedby" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Changed By" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Changeddate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Change Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Changedtime" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="Change Time" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="SPCustomfld" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Refno"/>
+                </Key>
+                <Property Name="Refno" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Referance No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Vbeln" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="DocumentNo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ItemNo" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Item" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ContractField" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Contract Field" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Fieldlevel" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Field Level" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FieldValue" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Field Value" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DocType" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Document Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Createdby" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Created By" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Createddate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Created Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Createdtime" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="Created Time" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Changedby" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Changed By" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Changeddate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Change Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Changedtime" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="Change Time" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="CreateSP" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Refno"/>
+                </Key>
+                <Property Name="Refno" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Referance No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="toHeaderTable" Relationship="GMS.CONTAPPROVAL_SRV.toHeaderTable" FromRole="FromRole_toHeaderTable" ToRole="ToRole_toHeaderTable"/>
+                <NavigationProperty Name="toservpara" Relationship="GMS.CONTAPPROVAL_SRV.toservpara" FromRole="FromRole_toservpara" ToRole="ToRole_toservpara"/>
+                <NavigationProperty Name="toClausecode" Relationship="GMS.CONTAPPROVAL_SRV.toClausecode" FromRole="FromRole_toClausecode" ToRole="ToRole_toClausecode"/>
+                <NavigationProperty Name="toCustfld" Relationship="GMS.CONTAPPROVAL_SRV.toCustfld" FromRole="FromRole_toCustfld" ToRole="ToRole_toCustfld"/>
+            </EntityType>
+            <Association Name="toservpara" sap:content-version="1">
+                <End Type="GMS.CONTAPPROVAL_SRV.CreateSP" Multiplicity="1" Role="FromRole_toservpara"/>
+                <End Type="GMS.CONTAPPROVAL_SRV.SPServpro" Multiplicity="*" Role="ToRole_toservpara"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_toservpara">
+                        <PropertyRef Name="Refno"/>
+                    </Principal>
+                    <Dependent Role="ToRole_toservpara">
+                        <PropertyRef Name="Refno"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="toClausecode" sap:content-version="1">
+                <End Type="GMS.CONTAPPROVAL_SRV.CreateSP" Multiplicity="1" Role="FromRole_toClausecode"/>
+                <End Type="GMS.CONTAPPROVAL_SRV.SPClauseCode" Multiplicity="*" Role="ToRole_toClausecode"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_toClausecode">
+                        <PropertyRef Name="Refno"/>
+                    </Principal>
+                    <Dependent Role="ToRole_toClausecode">
+                        <PropertyRef Name="Refno"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="toCustfld" sap:content-version="1">
+                <End Type="GMS.CONTAPPROVAL_SRV.CreateSP" Multiplicity="1" Role="FromRole_toCustfld"/>
+                <End Type="GMS.CONTAPPROVAL_SRV.SPCustomfld" Multiplicity="*" Role="ToRole_toCustfld"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_toCustfld">
+                        <PropertyRef Name="Refno"/>
+                    </Principal>
+                    <Dependent Role="ToRole_toCustfld">
+                        <PropertyRef Name="Refno"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="toHeaderTable" sap:content-version="1">
+                <End Type="GMS.CONTAPPROVAL_SRV.CreateSP" Multiplicity="1" Role="FromRole_toHeaderTable"/>
+                <End Type="GMS.CONTAPPROVAL_SRV.SpHeader" Multiplicity="*" Role="ToRole_toHeaderTable"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_toHeaderTable">
+                        <PropertyRef Name="Refno"/>
+                    </Principal>
+                    <Dependent Role="ToRole_toHeaderTable">
+                        <PropertyRef Name="Refno"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="GMS_CONTAPPROVAL_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="SpHeaderSet" EntityType="GMS.CONTAPPROVAL_SRV.SpHeader" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="SPServproSet" EntityType="GMS.CONTAPPROVAL_SRV.SPServpro" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="SPClauseCodeSet" EntityType="GMS.CONTAPPROVAL_SRV.SPClauseCode" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="SPCustomfldSet" EntityType="GMS.CONTAPPROVAL_SRV.SPCustomfld" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="CreateSPSet" EntityType="GMS.CONTAPPROVAL_SRV.CreateSP" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="toClausecodeSet" Association="GMS.CONTAPPROVAL_SRV.toClausecode" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="CreateSPSet" Role="FromRole_toClausecode"/>
+                    <End EntitySet="SPClauseCodeSet" Role="ToRole_toClausecode"/>
+                </AssociationSet>
+                <AssociationSet Name="toCustfldSet" Association="GMS.CONTAPPROVAL_SRV.toCustfld" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="CreateSPSet" Role="FromRole_toCustfld"/>
+                    <End EntitySet="SPCustomfldSet" Role="ToRole_toCustfld"/>
+                </AssociationSet>
+                <AssociationSet Name="toHeaderTableSet" Association="GMS.CONTAPPROVAL_SRV.toHeaderTable" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="CreateSPSet" Role="FromRole_toHeaderTable"/>
+                    <End EntitySet="SpHeaderSet" Role="ToRole_toHeaderTable"/>
+                </AssociationSet>
+                <AssociationSet Name="toservparaSet" Association="GMS.CONTAPPROVAL_SRV.toservpara" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="CreateSPSet" Role="FromRole_toservpara"/>
+                    <End EntitySet="SPServproSet" Role="ToRole_toservpara"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link rel="self" href="http://ingenxsrv:8001/sap/opu/odata/gms/CONTAPPROVAL_SRV/$metadata"
+                xmlns:atom="http://www.w3.org/2005/Atom"/>
+                <atom:link rel="latest-version" href="http://ingenxsrv:8001/sap/opu/odata/gms/CONTAPPROVAL_SRV/$metadata"
+                    xmlns:atom="http://www.w3.org/2005/Atom"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>

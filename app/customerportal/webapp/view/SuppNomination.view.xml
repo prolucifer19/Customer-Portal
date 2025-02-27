@@ -1,0 +1,106 @@
+<mvc:View controllerName="customerportal.controller.SuppNomination"
+    xmlns:form="sap.ui.layout.form"
+    height="100%"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:u="sap.ui.unified"
+    xmlns:tnt="sap.tnt"
+    xmlns:filterbar="sap.ui.comp.filterbar"
+    xmlns:l="sap.ui.layout">
+
+                    <ScrollContainer
+                        id="support_nomination"
+                        horizontal="false"
+                        vertical="true"
+                        height="100%"
+                    >
+                        <OverflowToolbar id="supNomOverflowToolbar">
+                            <Title
+                                id="supNomTitleNomination"
+                                text="Nomination"
+                                textAlign="Center"
+                            />
+                        </OverflowToolbar>
+                        <content>
+                            <filterbar:FilterBar id="supNomFilterBar" search="onGoNomtk">
+                                <filterbar:filterGroupItems>
+                                    <filterbar:FilterGroupItem
+                                        id="supNomFilterGroupItemNomtk"
+                                        name="Nomination Key"
+                                        label="Nomination Key"
+                                        groupName="Group1"
+                                        visibleInFilterBar="true"
+                                    >
+                                        <filterbar:control>
+                                            <Input
+                                                id="supNomNomtkId"
+                                                required="true"
+                                                showValueHelp="true"
+                                                valueHelpRequest=".onOpenValueHelpNomtkFrom"
+                                            />
+                                        </filterbar:control>
+                                    </filterbar:FilterGroupItem>
+                                    <filterbar:FilterGroupItem
+                                        id="supNomFilterGroupItemGasDay"
+                                        name="Gas Day"
+                                        label="Gas Day"
+                                        groupName="Group1"
+                                        visibleInFilterBar="true"
+                                    >
+                                        <filterbar:control>
+                                            <DatePicker
+                                                id="supNomGasDayPicker"
+                                                valueFormat="yyyy-MM-dd"
+                                                required="true"
+                                            />
+                                        </filterbar:control>
+                                    </filterbar:FilterGroupItem>
+                                </filterbar:filterGroupItems>
+                            </filterbar:FilterBar>
+
+                            <Table
+                                id="supNomTable"
+                                items="{tableModel>/TableData}"
+                                selectionChange="onTableSelectionChange"
+                                visible="false"
+                            >
+                                <columns>
+                                    <Column id="supNomColNomtk">
+                                        <Text id="supNomTextNomtk" text="Nomtk" />
+                                    </Column>
+                                    <Column id="supNomColGasDay">
+                                        <Text id="supNomTextGasDay" text="Gas Day" />
+                                    </Column>
+                                    <Column id="supNomColAction">
+                                        <Text id="supNomTextAction" text="Action" />
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem id="supNomColumnListItem">
+                                        <cells>
+                                            <Text
+                                                id="supNomTextNomtkCell"
+                                                text="{tableModel>Nomtk}"
+                                            />
+                                            <Text
+                                                id="supNomTextGasDayCell"
+                                                text="{tableModel>Gasday}"
+                                            />
+                                            <Button
+                                                id="supNomCreateTicketDialog"
+                                                text="Create Ticket"
+                                                press="onOpenCreateTicketDialog"
+                                                type="Ghost"
+                                            />
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </content>
+
+
+                    </ScrollContainer>
+    
+</mvc:View>

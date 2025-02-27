@@ -1,0 +1,15 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <SelectDialog
+        id="valueHelpNomtk"
+        title="Select Nomtk"
+        confirm="onConfirmNomtkFrom"
+        search="onValueHelpSearch"
+        cancel="onValueHelpClose" 
+        items="{nomtkModel>/NomtkList}"
+        >
+        <StandardListItem
+            title=" Nomination : {nomtkModel>Nomtk}"
+            description="Contract No. : {nomtkModel>Vbeln}"
+            />
+    </SelectDialog>
+</core:FragmentDefinition>

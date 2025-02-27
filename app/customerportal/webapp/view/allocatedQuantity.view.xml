@@ -1,0 +1,119 @@
+<mvc:View controllerName="customerportal.controller.allocatedQuantity"
+    xmlns:form="sap.ui.layout.form"
+    height="100%"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:u="sap.ui.unified"
+    xmlns:tnt="sap.tnt"
+    xmlns:filterbar="sap.ui.comp.filterbar"
+    xmlns:l="sap.ui.layout">
+    
+
+        <ScrollContainer
+                        id="alloQScrollContainer"
+                        horizontal="false"
+                        vertical="true"
+                        height="100%">
+                        <OverflowToolbar id="alloQOverflowToolbar">
+                            <Title
+                                id="alloQTitle"
+                                text="Ticketing Details"
+                                textAlign="Center"/>
+                        </OverflowToolbar>
+                        <content>
+                            <filterbar:FilterBar
+                                id="alloQFilterBar"
+                                search="onSearchAllocationQtyCust"
+                                filterChange=".onFilterChange">
+                                <filterbar:filterGroupItems>
+                                    <filterbar:FilterGroupItem
+                                        id="alloQFilterGroupItemPostingDate"
+                                        name="Posting Date"
+                                        label="Posting Date"
+                                        groupName="Group1"
+                                        visibleInFilterBar="true">
+                                        <filterbar:control>
+                                            <DatePicker
+                                                id="alloQDatePickerPostingDate"
+                                                liveChange="ondateChange"
+                                                valueFormat="yyyy-MM-dd"
+                                                change="onSelectOption"
+                                                required="true"/>
+                                        </filterbar:control>
+                                    </filterbar:FilterGroupItem>
+                                </filterbar:filterGroupItems>
+                            </filterbar:FilterBar>
+
+                            <VBox
+                                id="alloQVBoxTab"
+                                class="VboxTab"
+                                visible="false"
+                                justifyContent="Start"
+                                alignItems="Center"
+                                width="100%"
+                                alignContent="SpaceAround"
+                                height="500px">
+                                <Table
+                                    id="alloQAllocationTicketTable"
+                                    showNoData="false"
+                                    items="{
+    path: 'ticketModel>/data'
+}">
+                                   <columns>
+                                            <!-- Updated column IDs -->
+                                            <Column id="alloQColumnTicketKey">
+                                                <Text id="alloQTextTicketKey" text="Ticket Key" />
+                                            </Column>
+                                            <Column id="alloQColumnLocationId">
+                                                <Text id="alloQTextLocationId" text="Location Id" />
+                                            </Column>
+                                            <Column id="alloQColumnNominationQty">
+                                                <Text id="alloQTextNominationQty" text="Nomination Qty" />
+                                            </Column>
+                                            <Column id="alloQColumnQuantity">
+                                                <Text id="alloQTextQuantity" text="Quantity" />
+                                            </Column>
+                                            <Column id="alloQColumnUOM">
+                                                <Text id="alloQTextUOM" text="UOM" />
+                                            </Column>
+                                            <Column id="alloQColumnDocumentDate">
+                                                <Text id="alloQTextDocumentDate" text="Document Date" />
+                                            </Column>
+
+                                            <!-- Updated IDs for new dynamic columns -->
+                                            <Column id="alloQColumnSalesOrder">
+                                                <Text id="alloQTextSalesOrder" text="Sales Order" />
+                                            </Column>
+                                            <Column id="alloQColumnDelivery">
+                                                <Text id="alloQTextDelivery" text="Delivery" />
+                                            </Column>
+                                            <Column id="alloQColumnGoodIssues">
+                                                <Text id="alloQTextGoodIssues" text="Good Issues" />
+                                            </Column>
+                                        </columns>
+
+                                        <items>
+                                            <ColumnListItem id="alloQColumnListItem">
+                                                <cells>
+                                                    <!-- Updated cell IDs -->
+                                                    <Text id="alloQTextCellTicketKey" text="{ticketModel>TicketKey}" />
+                                                    <Text id="alloQTextCellLocationId" text="{ticketModel>LocationId}" />
+                                                    <Text id="alloQTextCellNominationQty" text="{ticketModel>Adnq}" />
+                                                    <Text id="alloQTextCellQuantity" text="{ticketModel>Quantity}" />
+                                                    <Text id="alloQTextCellUOM" text="{ticketModel>UOM}" />
+                                                    <Text id="alloQTextCellDocumentDate" text="{ticketModel>DocumentDate}" />
+
+                                                    <!-- Updated IDs for new dynamic cells -->
+                                                    <Text id="alloQTextCellSalesOrder" text="{ticketModel>SalesOrder}" />
+                                                    <Text id="alloQTextCellDelivery" text="{ticketModel>Delivery}" />
+                                                    <Text id="alloQTextCellGoodIssues" text="{ticketModel>GoodIssues}" />
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                            </VBox>
+                        </content>
+                    </ScrollContainer>
+</mvc:View>

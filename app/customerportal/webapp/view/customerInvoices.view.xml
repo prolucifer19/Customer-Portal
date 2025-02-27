@@ -1,0 +1,173 @@
+<mvc:View controllerName="customerportal.controller.customerInvoices"
+    xmlns:form="sap.ui.layout.form"
+    height="100%"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:u="sap.ui.unified"
+    xmlns:tnt="sap.tnt"
+    xmlns:filterbar="sap.ui.comp.filterbar"
+    xmlns:l="sap.ui.layout"         >
+    
+                        <ScrollContainer
+                        id="root5"
+                        horizontal="false"
+                        vertical="true"
+                        height="100%"
+                        >
+                            <OverflowToolbar id="cusInOverflowToolbar">
+                                <Title
+                                    id="cusInTitleBillingDetails"
+                                    text="Billing Details"
+                                    textAlign="Center"
+                                />
+                            </OverflowToolbar>
+                            <content>
+                                <filterbar:FilterBar
+                                    id="cusInFilterBar"
+                                    search="onSearch"
+                                    filterChange=".onFilterChange"
+                                >
+                                    <filterbar:filterGroupItems>
+                                        <filterbar:FilterGroupItem
+                                            id="cusInFilterGroupItemBillingDate"
+                                            name="Billing Date"
+                                            label="Billing Date"
+                                            groupName="Group1"
+                                            visibleInFilterBar="true"
+                                        >
+                                            <filterbar:control>
+                                                <DatePicker
+                                                    id="cusInDatePickerBillingDate"
+                                                    valueFormat="yyyy-MM-dd"
+                                                    change="onBillingDateChange"
+                                                    required="true"
+                                                />
+                                            </filterbar:control>
+                                        </filterbar:FilterGroupItem>
+                                    </filterbar:filterGroupItems>
+                                </filterbar:FilterBar>
+
+                                <VBox
+                                    id="cusInVBoxBilling"
+                                    class="VboxTab"
+                                    justifyContent="Start"
+                                    alignItems="Center"
+                                    width="100%"
+                                    alignContent="SpaceAround"
+                                    height="500px"
+                                    visible="false"
+                                >
+                                    <Table
+                                        id="cusInTableBilling"
+                                        items="{invoiceDataModel>/}"
+                                        growingScrollToLoad="true"
+                                        updateStarted="onBillingUpdateStarted"
+                                        updateFinished="onBillingUpdateFinished"
+                                        showNoData="false"
+                                    >
+                                        <columns>
+                                            <Column id="cusInColumnContractNumber">
+                                                <Text
+                                                    id="cusInTextContractNumber"
+                                                    text="Contract Number"
+                                                />
+                                            </Column>
+                                            <Column id="cusInColumnBillingDocument">
+                                                <Text
+                                                    id="cusInTextBillingDocument"
+                                                    text="Billing Document"
+                                                />
+                                            </Column>
+                                            <Column id="cusInColumnSalesOrder">
+                                                <Text
+                                                    id="cusInTextSalesOrder"
+                                                    text="Sales Order"
+                                                />
+                                            </Column>
+                                            <Column id="cusInColumnDelivery">
+                                                <Text
+                                                    id="cusInTextDelivery"
+                                                    text="Delivery"
+                                                />
+                                            </Column>
+                                            <Column
+                                                id="cusInColumnCustomerName"
+                                                width="15rem"
+                                            >
+                                                <Text
+                                                    id="cusInTextCustomerName"
+                                                    text="Customer Name"
+                                                />
+                                            </Column>
+                                            <Column id="cusInColumnQuantity">
+                                                <Text
+                                                    id="cusInTextQuantity"
+                                                    text="Quantity"
+                                                />
+                                            </Column>
+                                            <Column id="cusInColumnMaterial">
+                                                <Text
+                                                    id="cusInTextMaterial"
+                                                    text="Material"
+                                                />
+                                            </Column>
+                                            <Column id="cusInColumnPrice">
+                                                <Text id="cusInTextPrice" text="Price" />
+                                            </Column>
+                                            <Column id="cusInColumnPricingDate">
+                                                <Text id="cusInTextPricingDate" text="Pricing Date" />
+                                            </Column>
+                                        </columns>
+
+                                        <items>
+                                            <ColumnListItem id="cusInColumnListItemBilling">
+                                                <cells>
+                                                    <Text
+                                                        id="cusInTextCellContractNumber"
+                                                        text="{invoiceDataModel>Vbeln}"
+                                                    />
+                                                    <Text
+                                                        id="cusInTextCellBillingDocument"
+                                                        text="{invoiceDataModel>BillingNumber}"
+                                                    />
+                                                    <Text
+                                                        id="cusInTextCellSalesOrder"
+                                                        text="{invoiceDataModel>OrderNumber}"
+                                                    />
+                                                    <Text
+                                                        id="cusInTextCellDelivery"
+                                                        text="{invoiceDataModel>DeliveryNumber}"
+                                                    />
+                                                    <Text
+                                                        id="cusInTextCellCustomerName"
+                                                        text="{invoiceDataModel>CustomerName}"
+                                                    />
+                                                    <Text
+                                                        id="cusInTextCellQuantity"
+                                                        text="{invoiceDataModel>Quantity}"
+                                                    />
+                                                    <Text
+                                                        id="cusInTextCellMaterial"
+                                                        text="{invoiceDataModel>MaterialName}"
+                                                    />
+                                                    <Text
+                                                        id="cusInTextCellPrice"
+                                                        text="{invoiceDataModel>price}"
+                                                    />
+                                                    <Text
+                                                        id="cusInTextCellPricingDate"
+                                                        text="{invoiceDataModel>pricing_dt}"
+                                                    />
+                                                </cells>
+                                            </ColumnListItem>
+                                        </items>
+                                    </Table>
+                                </VBox>
+                            </content>
+
+                    </ScrollContainer>
+
+    
+</mvc:View>

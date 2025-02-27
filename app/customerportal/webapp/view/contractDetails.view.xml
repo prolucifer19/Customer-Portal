@@ -1,0 +1,694 @@
+<mvc:View controllerName="customerportal.controller.contractDetails"
+   xmlns:form="sap.ui.layout.form"
+    height="100%"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:u="sap.ui.unified"
+    xmlns:tnt="sap.tnt"
+    xmlns:filterbar="sap.ui.comp.filterbar"
+    xmlns:l="sap.ui.layout"
+    >
+    <tnt:ToolPage id="toolPage">
+        <tnt:header>
+            <tnt:ToolHeader id="conDetToolHeader1" class="header">
+                <ToggleButton
+                    id="conDetToggleButton1"
+                    icon="sap-icon://menu2"
+                    press="onMenuButtonPress"
+                />
+                <Title
+                    id="conDetTitleCP"
+                    text="Customer Portal"   
+                />
+               
+            </tnt:ToolHeader>
+        </tnt:header>
+        <tnt:sideContent>
+            <core:Fragment
+                fragmentName="customerportal.view.sideNavigation"
+                type="XML"
+            />
+        </tnt:sideContent>
+        <tnt:mainContents>
+            <NavContainer
+                id="pageContainer"
+                initialPage="root1"
+            >
+ 
+<pages>
+           
+                    <ScrollContainer
+                        id="root1"
+                        horizontal="false"
+                        vertical="true"
+                        height="100%"
+                    >
+                    <HBox
+                        id="conDetHBoxContractNumber"
+                        width="100%"
+                        justifyContent="SpaceBetween"
+                        class="sapUiTinyMargin"
+                    >
+                        <!-- First Dropdown -->
+                        <VBox id="conDetVBoxContractNumber" width="45%">
+                            <Label
+                                id="conDetLabelSelectContractNumber"
+                                text="Select Contract Number:"
+                                class="sapUiLargeMarginBegin"
+                            />
+                            <Input
+                                id="conDetInputContractNumber"
+                                width="200px"
+                                showValueHelp="true"
+                                valueHelpOnly="true"
+                                valueHelpRequest="onContractValueHelp"
+                                class="sapUiLargeMarginBegin"
+                            />
+                        </VBox>
+                    </HBox>
+                    <VBox id="conDetVBoxOrgDetails" width="45%">
+                        <Title
+                            id="conDetTitleOrgDetails"
+                            text="Org Details"
+                            textAlign="Center"
+                            class="sapUiMediumMarginBegin sapUiSmallMarginTopBottom"
+                        />
+                    </VBox>
+                    <form:SimpleForm
+                        id="conDetSimpleForm2"
+                        visible="true"
+                    >
+                        <!-- Customer Details Title -->
+                        <VBox id="conDetVBoxCustomerDetails" width="100%">
+                            <!-- Contract Type Label and Select -->
+                            <HBox id="conDetHBoxCustomerDetails" class="sapUiLargeMarginBegin">
+                                <VBox id="conDetVBoxLeft" width="45%" class="csscustomerportal">
+                                    <Label
+                                        id="conDetLabelCustomerName"
+                                        text="Customer Name"
+                                        textDirection="LTR"
+                                    />
+                                    <Input
+                                        id="conDetInputCustomerName"
+                                        width="200px"
+                                        editable="false"
+                                    />
+                                    <Label
+                                        id="conDetLabelSalesOrg"
+                                        text="Sales Organization"
+                                        textDirection="LTR"
+                                        visible="false"
+                                    />
+                                    <Input
+                                        id="conDetInputSalesOrg"
+                                        width="200px"
+                                        change=".onContractTypeChange"
+                                        editable="false"
+                                        visible="false"
+                                    />
+                                    <Label
+                                        id="conDetLabelDistributionChannel"
+                                        text="Distribution Channel"
+                                        textDirection="LTR"
+                                        visible="false"
+                                    />
+                                    <Input
+                                        id="conDetInputDistributionChannel"
+                                        width="200px"
+                                        visible="false"
+                                        editable="false"
+                                    />
+                                    <Label
+                                        id="conDetLabelValidFrom"
+                                        text="Valid From"
+                                        textDirection="LTR"
+                                    />
+                                    <Input
+                                        id="conDetInputValidFrom"
+                                        width="200px"
+                                        editable="false"
+                                    />
+                                </VBox>
+
+                                <VBox id="conDetVBoxRight" width="45%">
+                                    <Label
+                                        id="conDetLabelShipToParty"
+                                        text="Ship To Party"
+                                        textDirection="LTR"
+                                        visible="false"
+                                    />
+                                    <Input
+                                        id="conDetInputShipToParty"
+                                        width="200px"
+                                        editable="false"
+                                        visible="false"
+                                    />
+                                    <Label
+                                        id="conDetLabelContractDescription"
+                                        text="Contract Description"
+                                        textDirection="LTR"
+                                    />
+                                    <Input
+                                        id="conDetInputContractDescription"
+                                        width="200px"
+                                        editable="false"
+                                    />
+                                    <Label
+                                        id="conDetLabelDivision"
+                                        text="Division"
+                                        textDirection="LTR"
+                                        visible="false"
+                                    />
+                                    <Input
+                                        id="conDetInputDivision"
+                                        width="200px"
+                                        editable="false"
+                                        visible="false"
+                                    />
+                                    <Label
+                                        id="conDetLabelValidTo"
+                                        text="Valid To"
+                                        textDirection="LTR"
+                                    />
+                                    <Input
+                                        id="conDetInputValidTo"
+                                        width="200px"
+                                        editable="false"
+                                    />
+                                </VBox>
+                            </HBox>
+                        </VBox>
+                    </form:SimpleForm>
+                    <HBox
+                        id="conDetHBoxCapacityDetails"
+                        width="100%"
+                        justifyContent="SpaceBetween"
+                    >
+                        <VBox id="conDetVBoxCapacityDetails" width="45%">
+                            <Title
+                                id="conDetTitleCapacityDetails"
+                                text="Capacity Details"
+                                textAlign="Center"
+                                class="sapUiMediumMarginBegin sapUiSmallMarginTopBottom"
+                            />
+                        </VBox>
+                    </HBox>
+
+                       <form:SimpleForm
+                            id="conDetSimpleForm3"
+                            visible="true"
+                        >
+                            <form:toolbar>
+                                <Toolbar id="conDetLineItemHeader">
+                                    <HBox id="conDetHboxMaterial" class="sapUiSmallMarginTop">
+                                        <Select
+                                            id="conDetIdMatSelectBox"
+                                            class="sapUiLargeMarginBegin"
+                                            width="70px"
+                                            forceSelection="false"
+                                            items="{path: 'lineItemModel>/lineitem/item', sorter: { path: 'No' }}"
+                                            change=".conDetOnChange"
+                                            selectedKey="{lineItemModel>/lineitem/selectedKey}"
+                                        >
+                                            <core:Item
+                                                id="conDetItemLineItem"
+                                                text="{lineItemModel>No}"
+                                                key="{lineItemModel>No}"
+                                            />
+                                        </Select>
+                                    </HBox>
+                                </Toolbar>
+                            </form:toolbar>
+                            <!-- Customer Details Title -->
+                            <VBox id="conDetVBoxMaterialDetails" width="100%">
+                                <!-- Contract Type Label and Select -->
+                                <HBox id="conDetHBoxMaterialDetails" class="sapUiLargeMarginBegin">
+                                    <VBox id="conDetVBoxMaterialLeft" width="45%" class="csscustomerportal">
+                                        <Label
+                                            id="conDetLabelMaterial"
+                                            text="Material"
+                                            textDirection="LTR"
+                                        />
+                                        
+                                        
+
+                                        <Label
+                                            id="conDetLabelUOM"
+                                            text="UOM"
+                                            textDirection="LTR"
+                                        />
+                                        <Input
+                                            id="conDetUOMInput"
+                                            width="200px"
+                                            editable="false"
+                                        />
+                                        <Label
+                                            id="conDetLabelDPAccDCQ"
+                                            text="DP accumulated DCQ"
+                                            textDirection="LTR"
+                                        />
+                                        <Input
+                                            id="conDetDPAccDCQInput"
+                                            width="200px"
+                                            editable="false"
+                                        />
+                                        <Label
+                                            id="conDetLabelRDPAccDCQ"
+                                            text="RDP accumulated DCQ"
+                                            textDirection="LTR"
+                                        />
+                                        <Input
+                                            id="conDetRDPAccDCQInput"
+                                            width="200px"
+                                            editable="false"
+                                        />
+                                        <Label
+                                            id="conDetLabelFuelConsumption"
+                                            text="Fuel Consumption"
+                                            labelFor="conDetFuelConsumptionGroup"
+                                            visible="false"
+                                        />
+                                        <RadioButtonGroup
+                                            id="conDetFuelConsumptionGroup"
+                                            columns="2"
+                                            selectedIndex="-1"
+                                            select="onFuelConsumptionChange"
+                                            visible="false"
+                                        >
+                                            <buttons>
+                                                <RadioButton
+                                                    id="conDetRadioFuelYes"
+                                                    text="Yes"
+                                                    key="yes"
+                                                />
+                                                <RadioButton
+                                                    id="conDetRadioFuelNo"
+                                                    text="No"
+                                                    key="no"
+                                                />
+                                            </buttons>
+                                        </RadioButtonGroup>
+                                    </VBox>
+
+                                    <VBox id="conDetVBoxMaterialRight" width="45%">
+                                        <Label
+                                            id="conDetLabelPlant"
+                                            text="Plant"
+                                            textDirection="LTR"
+                                            class="sapUiTinyMarginBegin"
+                                        />
+                                        <HBox id="conDetPoPlant">
+                                            <Input
+                                                id="conDetPlantID"
+                                                width="200px"
+                                                editable="false"
+                                                change=""
+                                                class="sapUiTinyMarginBegin"
+                                            />
+                                            <Input
+                                                id="conDetPlantDesc"
+                                                width="200px"
+                                                editable="false"
+                                                class="sapUiTinyMarginBegin"
+                                            />
+                                        </HBox>
+                                        <Label
+                                            id="conDetLabelServiceProfile"
+                                            text="Service Profile"
+                                            textDirection="LTR"
+                                            class="sapUiTinyMarginBegin"
+                                        />
+                                        <HBox id="conDetServiceProfileBox">
+                                            <Input
+                                                id="conDetServiceProfileId"
+                                                width="200px"
+                                                class="sapUiTinyMarginBegin"
+                                                editable="false"
+                                            />
+                                            <Input
+                                                id="conDetServiceProfileDesc"
+                                                width="200px"
+                                                editable="false"
+                                                class="sapUiTinyMarginBegin"
+                                            />
+                                        </HBox>
+                                        <Label
+                                            id="conDetLabelDPTargetQuantity"
+                                            text="DP Target Quantity"
+                                            textDirection="LTR"
+                                            class="sapUiTinyMarginBegin"
+                                        />
+                                        <Input
+                                            id="conDetDPTargetQuantityInput"
+                                            width="200px"
+                                            editable="false"
+                                            class="sapUiTinyMarginBegin"
+                                        />
+                                        <Label
+                                            id="conDetLabelRDPTargetQuantity"
+                                            text="RDP Target Quantity"
+                                            textDirection="LTR"
+                                            class="sapUiTinyMarginBegin"
+                                        />
+                                        <Input
+                                            id="conDetRDPTargetQuantityInput"
+                                            width="200px"
+                                            editable="false"
+                                            class="sapUiTinyMarginBegin"
+                                        />
+                                        <Label
+                                            id="conDetLabelFuelLocation"
+                                            text="Fuel Location"
+                                            textDirection="LTR"
+                                            class="sapUiTinyMarginBegin"
+                                            visible="{= ${/fuelConsumptionEnabled} === true }"
+                                        />
+                                        <Input
+                                            id="conDetFuelLocationInput"
+                                            width="200px"
+                                            class="sapUiTinyMarginBegin"
+                                            value=""
+                                            visible="{= ${/fuelConsumptionEnabled} === true }"
+                                        />
+                                    </VBox>
+                                </HBox>
+                            </VBox>
+                        </form:SimpleForm>
+
+
+                        <!-- Delivery/Redelivery Table-->
+
+                         <Table
+                                id="conDetRDPTable"
+                                class="tableBorder sapUiTinyMargin"
+                            >
+                                <columns>
+                                    <Column id="conDetColDeliveryPoint">
+                                        <Label
+                                            id="conDetLabelDeliveryPoint"
+                                            text="Delivery Point"
+                                        />
+                                    </Column>
+                                    <Column id="conDetColdpDESC">
+                                        <Label
+                                            id="conDetLabelDPDescription"
+                                            text="DP Description"
+                                        />
+                                    </Column>
+                                    <Column id="conDetColDPDCQ">
+                                        <Label
+                                            id="conDetLabelDPDCQ"
+                                            text="DP DCQ"
+                                        />
+                                    </Column>
+                                    <Column id="conDetColRedeliveryPoint">
+                                        <Label
+                                            id="conDetLabelRedeliveryPoint"
+                                            text="Redelivery Point"
+                                        />
+                                    </Column>
+                                    <Column id="conDetColrdpDESC">
+                                        <Label
+                                            id="conDetRdpdescLabel"
+                                            text="RDP Description"
+                                        />
+                                    </Column>
+                                    <Column id="conDetColRDPDCQ">
+                                        <Label
+                                            id="conDetLabelRDPDCQ"
+                                            text="RDP DCQ"
+                                        />
+                                    </Column>
+                                    <Column id="conDetColValidFrom">
+                                        <Label
+                                            id="conDetLabelValidFromRDP"
+                                            text="Valid From"
+                                        />
+                                    </Column>
+                                    <Column id="conDetColValidTo">
+                                        <Label
+                                            id="conDetLabelValidToRDP"
+                                            text="Valid To"
+                                        />
+                                    </Column>
+                                    <Column id="conDetColPath">
+                                        <Label
+                                            id="conDetLabelPath"
+                                            text="Path"
+                                        />
+                                    </Column>
+                                    <!-- Fuel Percentage -->
+                                    <Column id="conDetFuelPercentageColumn">
+                                        <Label
+                                            id="conDetLabelFuelPercentage"
+                                            text="Fuel Percentage"
+                                        />
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem id="conDetColumnListItem">
+                                        <cells>
+                                            <!--Delivery Point-->
+                                            <Input
+                                                id="conDetDelivery_id"
+                                                width="100px"
+                                                editable="false"
+                                                change="conDetCUSPoservCatDetail"
+                                            />
+                                            <!--DP Description-->
+                                            <Input
+                                                id="conDetDPDescInput"
+                                                width="100px"
+                                                value=""
+                                                editable="false"
+                                            />
+                                            <!--DP DCQ-->
+                                            <Input
+                                                id="conDetDPDCQInput"
+                                                width="100px"
+                                                value=""
+                                                editable="false"
+                                            />
+                                            <!-- Redelivery Point -->
+                                            <Input
+                                                id="conDetRedelivery_id"
+                                                width="100px"
+                                                change="conDetCUSPoservCatDetail2"
+                                                editable="false"
+                                            />
+                                            <!--RDP Description-->
+                                            <Input
+                                                id="conDetRdpdescInput"
+                                                width="100px"
+                                                value=""
+                                                editable="false"
+                                            />
+                                            <!--RDP DCQ-->
+                                            <Input
+                                                id="conDetRDPDCQInput"
+                                                width="100px"
+                                                value=""
+                                                editable="false"
+                                            />
+                                            <!-- Valid From DatePicker -->
+                                            <Input
+                                                id="conDetValidFromInput"
+                                                width="100px"
+                                                editable="false"
+                                            />
+                                            <!-- Valid To DatePicker -->
+                                            <Input
+                                                id="conDetValidToInput"
+                                                width="100px"
+                                                editable="false"
+                                            />
+                                            <!--Path-->
+                                            <Input
+                                                id="conDetPathInput"
+                                                width="100px"
+                                                value=""
+                                                editable="false"
+                                            />
+                                            <!-- Fuel Percentage -->
+                                            <Input
+                                                id="conDetFuelPercentageInput"
+                                                width="100px"
+                                                value=""
+                                                editable="false"
+                                            />
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+
+                            <Table items="{valueParameterModel>/}" mode="None" id="conDetValueParameterTable" class="tableBorder sapUiTinyMargin">
+                                <columns>
+                                    <Column id="conDetColumnVP" width="10rem">
+                                        <header>
+                                            <Label id="conDetTitleValueParameter" text="Value Parameter" />
+                                        </header>
+                                    </Column>
+                                    <Column id="conDetColumnValue" width="10rem">
+                                        <header>
+                                            <Label id="conDetTitleValue" text="Value" required="true" />
+                                        </header>
+                                    </Column>
+                                    <Column id="conDetColumnDescription" width="40rem">
+                                        <header>
+                                            <Title id="conDetTitleDescription" />
+                                        </header>
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem id="conDetColumnListItemValueParameter">
+                                        <cells>
+                                            <Text id="conDetServiceParameterText" text="{valueParameterModel>serviceParameter}" />
+                                            <Input id="conDetInputValue" width="100px" value="{valueParameterModel>value}" change="conDetTargetQuantityCal" required="true" />
+                                            <Label id="conDetUOMUnitDerived" text="" />
+                                            <Text id="conDetIDText" text="{valueParameterModel>ID}" visible="false" />
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+
+                       <HBox
+                            id="conDetHBoxClauseInformation"
+                            width="100%"
+                            justifyContent="SpaceBetween"
+                        >
+                            <VBox id="conDetVBoxClauseInformation" width="45%">
+                                <Title
+                                    id="conDetTitleClauseInformation"
+                                    text="Clause Information"
+                                    textAlign="Center"
+                                    class="sapUiMediumMarginBegin sapUiSmallMarginTopBottom"
+                                />
+                            </VBox>
+                        </HBox>
+                        <VBox id="conDetVBoxClauseTable">
+                            <Table
+                                id="conDetClCodeTable"
+                                class="tableBorder sapUiTinyMargin"
+                            >
+                                <columns>
+                                    <Column id="conDetIDGenColumn1278">
+                                        <Label
+                                            id="conDetLabelClauseCode"
+                                            text="Clause Code"
+                                        />
+                                    </Column>
+                                    <Column id="conDetColValidFromCT">
+                                        <Label
+                                            id="conDetLabelValidFromCT"
+                                            text="Valid From"
+                                        />
+                                    </Column>
+                                    <Column id="conDetColValidToCT">
+                                        <Label
+                                            id="conDetLabelValidToCT"
+                                            text="Valid To"
+                                        />
+                                    </Column>
+                                    <Column id="conDetColThreshold">
+                                        <Label
+                                            id="conDetLabelThreshold"
+                                            text="Threshold%"
+                                        />
+                                    </Column>
+                                    <Column id="conDetColThresholdReference">
+                                        <Label
+                                            id="conDetLabelThresholdReference"
+                                            text="Threshold Reference"
+                                        />
+                                    </Column>
+                                    <Column id="conDetColRemark">
+                                        <Label
+                                            id="conDetLabelRemark"
+                                            text="Remark"
+                                        />
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem id="conDetIDGenColumnListItem">
+                                        <cells>
+                                            <Input
+                                                id="conDetInputClauseCode"
+                                                forceSelection="false"
+                                                width="100px"
+                                                editable="false"
+                                            />
+                                            <Input
+                                                id="conDetInputValidFromCT"
+                                                width="100px"
+                                                value=""
+                                                editable="false"
+                                            />
+                                            <Input
+                                                id="conDetInputValidToCT"
+                                                width="100px"
+                                                value=""
+                                                editable="false"
+                                            />
+                                            <Input
+                                                id="conDetInputThreshold"
+                                                width="100px"
+                                                value=""
+                                                editable="false"
+                                            />
+                                            <Input
+                                                id="conDetInputThresholdReference"
+                                                width="100px"
+                                                forceSelection="false"
+                                                editable="false"
+                                            />
+                                            <Input
+                                                id="conDetInputRemark"
+                                                width="100px"
+                                                value=""
+                                                editable="false"
+                                            />
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </VBox>
+
+                        <!-- ALLOCATION PARAMETER -->
+                       <Table id="conDetAllocTable" items="{allocModel>/allocLevel}">
+                                <headerToolbar>
+                                    <Toolbar id="conDetToolbarAllocTable">
+                                        <Title id="conDetTitleAllocParameters" text="Allocation Parameters" />
+                                    </Toolbar>
+                                </headerToolbar>
+                                <columns>
+                                    <Column id="conDetColumnLevel">
+                                        <Text id="conDetTextLevel" text="Level" />
+                                    </Column>
+                                    <Column id="conDetColumnParameters">
+                                        <Label id="conDetLabelParameters" text="Parameters" />
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem id="conDetColumnListItemAlloc">
+                                        <cells>
+                                            <Text id="conDetTextAllocLevel" text="{allocModel>Level}" />
+                                            <Select
+                                                id="conDetSelectAllocParam"
+                                                selectedKey="{allocModel>selectedParam}"
+                                                width="200px"
+                                                forceSelection="false"
+                                            >
+                                                <!-- DYNAMIC ITEMS -->
+                                            </Select>
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                    </ScrollContainer>
+                </pages>
+              </NavContainer>
+        </tnt:mainContents>
+    </tnt:ToolPage>  
+</mvc:View>

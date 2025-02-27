@@ -1,0 +1,112 @@
+<mvc:View controllerName="customerportal.controller.SuppAllocatedQuantity"
+    xmlns:form="sap.ui.layout.form"
+    height="100%"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:u="sap.ui.unified"
+    xmlns:tnt="sap.tnt"
+    xmlns:filterbar="sap.ui.comp.filterbar"
+    xmlns:l="sap.ui.layout">
+    
+    <ScrollContainer
+                        id="support_allocatedQuantity"
+                        horizontal="false"
+                        vertical="true"
+                        height="100%"
+                    >
+                        <OverflowToolbar id="supAllOverflowToolbar">
+                            <Title
+                                id="supAllTitleTicketingDetails"
+                                text="Ticketing Details"
+                                textAlign="Center"
+                            />
+                        </OverflowToolbar>
+                        <content>
+                            <filterbar:FilterBar
+                                id="supAllFilterBar"
+                                search="onSearchTicket"
+                                filterChange=".onFilterChange"
+                            >
+                                <filterbar:filterGroupItems>
+                                    <filterbar:FilterGroupItem
+                                        id="supAllFilterGroupItemPostingDate"
+                                        name="Posting Date"
+                                        label="Posting Date"
+                                        groupName="Group1"
+                                        visibleInFilterBar="true"
+                                    >
+                                        <filterbar:control>
+                                            <DatePicker
+                                                id="supAllPostDate"
+                                                liveChange="onDateChange"
+                                                valueFormat="yyyy-MM-dd"
+                                                change="onSelectOption"
+                                                required="true"
+                                            />
+                                        </filterbar:control>
+                                    </filterbar:FilterGroupItem>
+                                </filterbar:filterGroupItems>
+                            </filterbar:FilterBar>
+
+                            <VBox
+                                id="supAllVBoxTicketTable"
+                                class="VboxTab"
+                                visible="false"
+                                justifyContent="Start"
+                                alignItems="Center"
+                                width="100%"
+                                alignContent="SpaceAround"
+                                height="500px"
+                            >
+                                <Table
+                                    id="supAllTicketTable"
+                                    showNoData="false"
+                                    items="{
+                                        path: 'ticketModel>/data'
+                                    }"
+                                >
+                                    <columns>
+                                        <Column id="supAllColumnTicketKey">
+                                            <Text id="supAllTextTicketKey" text="Ticket Key" />
+                                        </Column>
+
+                                        <Column id="supAllColumnDocumentDate">
+                                            <Text id="supAllTextDocumentDate" text="Document Date" />
+                                        </Column>
+
+                                        <Column id="supAllColumnAction">
+                                            <Text id="supAllTextAction" text="Action" />
+                                        </Column>
+                                    </columns>
+
+                                    <items>
+                                        <ColumnListItem id="supAllColumnListItem">
+                                            <cells>
+                                                <Text
+                                                    id="supAllTextTicketKeyCell"
+                                                    text="{ticketModel>TicketKey}"
+                                                />
+                                                <Text
+                                                    id="supAllTextDocumentDateCell"
+                                                    text="{ticketModel>DocumentDate}"
+                                                />
+                                                <Button
+                                                    id="supAllCreateTicketDialogAlloc"
+                                                    text="Create Ticket"
+                                                    press="onOpenCreateTicketAlloc"
+                                                    type="Ghost"
+                                                />
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                            </VBox>
+                        </content>
+
+
+                    </ScrollContainer>
+
+
+</mvc:View>
