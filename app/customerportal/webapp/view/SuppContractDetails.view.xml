@@ -1,0 +1,188 @@
+<mvc:View controllerName="customerportal.controller.SuppContractDetails"
+    xmlns:form="sap.ui.layout.form"
+    height="100%"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:u="sap.ui.unified"
+    xmlns:tnt="sap.tnt"
+    xmlns:filterbar="sap.ui.comp.filterbar"
+    xmlns:l="sap.ui.layout">
+    
+                    <ScrollContainer
+                        id="support_contract"
+                        horizontal="false"
+                        vertical="true"
+                        height="100%"
+                    >
+                        <OverflowToolbar id="supConOverflowToolbar">
+                            <Title
+                                id="supConTitleContractSupport"
+                                text="Contract Support"
+                                textAlign="Center"
+                            />
+                        </OverflowToolbar>
+                        <content>
+                            <filterbar:FilterBar
+                                id="supConFilterBarContract"
+                                search="onSearchContSupport"
+                                filterChange="onFilterChange"
+                            >
+                                <filterbar:filterGroupItems>
+                                    <!-- From Contract No Filter -->
+                                    <filterbar:FilterGroupItem
+                                        id="supConFilterFromContractNo"
+                                        name="From ContractNo"
+                                        label="From Contract"
+                                        groupName="Group6"
+                                        visibleInFilterBar="true"
+                                    >
+                                        <filterbar:control>
+                                            <Input
+                                                id="supConFromContractNoInput"
+                                                value=""
+                                                showValueHelp="true"
+                                                valueHelpRequest=".onValueHelpContract"
+                                                liveChange="onFromContractNoChange1"
+                                            />
+                                        </filterbar:control>
+                                    </filterbar:FilterGroupItem>
+
+                                    <!-- To Contract No Filter -->
+                                    <filterbar:FilterGroupItem
+                                        id="supConFilterToContractNo"
+                                        name="To ContractNo"
+                                        label="To Contract"
+                                        groupName="Group2"
+                                        visibleInFilterBar="true"
+                                    >
+                                        <filterbar:control>
+                                            <Input
+                                                id="supConToContractNoInput"
+                                                value=""
+                                                showValueHelp="true"
+                                                valueHelpRequest=".onValueHelpContract"
+                                                liveChange="onToContractNoChange"
+                                            />
+                                        </filterbar:control>
+                                    </filterbar:FilterGroupItem>
+                                    <!-- From Date Filter -->
+                                    <filterbar:FilterGroupItem
+                                        id="supConFilterFromDate"
+                                        name="From Date"
+                                        label="From Contract Date"
+                                        groupName="Group1"
+                                        visibleInFilterBar="true"
+                                    >
+                                        <filterbar:control>
+                                            <DatePicker
+                                                id="supConFromDatePicker"
+                                                valueFormat="yyyy-MM-dd"
+                                                change="onFromDateChange"
+                                                required="true"
+                                            />
+                                        </filterbar:control>
+                                    </filterbar:FilterGroupItem>
+
+                                    <!-- To Date Filter -->
+                                    <filterbar:FilterGroupItem
+                                        id="supConFilterToDate"
+                                        name="To Date"
+                                        label="To Contract Date"
+                                        groupName="Group1"
+                                        visibleInFilterBar="true"
+                                    >
+                                        <filterbar:control>
+                                            <DatePicker
+                                                id="supConToDatePicker"
+                                                valueFormat="yyyy-MM-dd"
+                                                change="onToDateChange"
+                                            />
+                                        </filterbar:control>
+                                    </filterbar:FilterGroupItem>
+                                </filterbar:filterGroupItems>
+                            </filterbar:FilterBar>
+                            <VBox
+                                id="supConVBoxSupportCont"
+                                class="VboxTab"
+                                justifyContent="Start"
+                                alignItems="End"
+                                width="100%"
+                                alignContent="SpaceAround"
+                                height="500px"
+                                visible="false"
+                            >
+                                <Table
+                                    id="supConSupportContTable"
+                                    items="{contractModel>/}"
+                                    updateStarted="onBillingUpdateStarted2"
+                                    updateFinished="onBillingUpdateFinished2"
+                                    showNoData="true"
+                                    showUnread="true"
+                                    itemPress=".onContractPress"
+                                    alternateRowColors="true"
+                                >
+                                    <columns>
+                                        <Column id="supConContractNumberColumn">
+                                            <Text
+                                                id="supConTextContractNumber"
+                                                text="Contract Number"
+                                            />
+                                        </Column>
+                                        <Column id="supConContractValidFromColumn">
+                                            <Text
+                                                id="supConTextValidFrom"
+                                                text="Valid From"
+                                            />
+                                        </Column>
+                                        <Column id="supConContractValidToColumn">
+                                            <Text
+                                                id="supConTextValidTo"
+                                                text="Valid To"
+                                            />
+                                        </Column>
+                                        <Column id="supConContractActionColumn">
+                                            <Text
+                                                id="supConTextAction"
+                                                text="Action"
+                                            />
+                                        </Column>
+                                    </columns>
+
+                                    <items>
+                                        <ColumnListItem
+                                            id="supConColumnListItem"
+                                        >
+                                            <cells>
+                                                <Text
+                                                    id="supConTextVbeln"
+                                                    text="{contractModel>Vbeln}"
+                                                />
+                                                <Text
+                                                    id="supConTextValidFromCell"
+                                                    text="{contractModel>ValidFrom}"
+                                                />
+                                                <Text
+                                                    id="supConTextValidToCell"
+                                                    text="{contractModel>ValidTo}"
+                                                />
+                                                <Button
+                                                    id="supConButtonCreateTicket"
+                                                    text="Create Ticket"
+                                                    press="onContractTicketBtnPress"
+                                                />
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                            </VBox>
+                        </content>
+
+
+                    </ScrollContainer>
+    
+
+
+
+</mvc:View>

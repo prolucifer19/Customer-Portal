@@ -1,0 +1,5 @@
+GET http://localhost:4004/odata/v4/customerportalservice/getNominationsByCustomer
+###
+GET http://localhost:4004/odata/v4/customerportalservice/getContractDetailsAndPastNom?Vbeln='40000465'
+###
+GET http://localhost:4004/odata/v4/customerportalservice/getNominationDetailsByGasDay?Gasday=2024-02-27&Vbeln='40000324'

@@ -1,0 +1,77 @@
+{
+	"selectedKey": "root1",
+	"navigation": [
+		{
+			"title": "Contract Details",
+			"icon": "sap-icon://customer-order-entry",
+			"key": "root1"
+			
+		},
+		{
+			"title": "Request for Contract",
+			"icon": "sap-icon://customer-order-entry",
+			"key": "root7"
+			
+		},
+		{
+			"title": "Contract Amendment",
+			"icon": "sap-icon://activity-items",
+			"key": "root6"
+			
+		},
+		{
+			"title": "Nomination",
+			"icon": "sap-icon://activity-2",
+			"key": "root2"
+		},
+		{
+			"title": "Allocated Quantity",
+			"icon": "sap-icon://approvals",
+            "key": "root3",
+			"expanded": false
+		},
+		{
+			"title": "Penalty Report",
+			"icon": "sap-icon://action",
+            "key": "root4",
+			"expanded": false
+		},
+        {
+			"title": "Invoices",
+			"icon": "sap-icon://my-sales-order",
+            "key": "root5",
+			"expanded": false
+		}
+	],
+	"fixedNavigation": [
+        {
+			"title": "Grievance Support",
+			"icon": "sap-icon://headset",
+			"expanded": false,
+			"subItems": [
+				{
+					"title": "Contract Details",
+					"icon": "sap-icon://customer-order-entry",
+					"key": "support_contract"
+				},
+				{
+					"title": "Nomination",
+					"icon": "sap-icon://activity-2",
+					"key": "support_nomination"
+				},
+				{
+					"title": "Allocated Quantity",
+					"icon": "sap-icon://action",
+					"key": "support_allocatedQuantity"
+				},
+				{
+					"title": "Invoices",
+					"icon": "sap-icon://my-sales-order",
+					"key": "support_Invoice"
+				}
+			]
+		}
+	]
+}
+
+

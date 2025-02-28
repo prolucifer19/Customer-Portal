@@ -1,0 +1,999 @@
+<mvc:View
+    controllerName="customerportal.controller.contractRequest"
+    xmlns:form="sap.ui.layout.form"
+    height="100%"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:u="sap.ui.unified"
+    xmlns:tnt="sap.tnt"
+    xmlns:filterbar="sap.ui.comp.filterbar"
+    xmlns:l="sap.ui.layout"
+>
+    <ScrollContainer
+        id="root7"
+        horizontal="false"
+        vertical="true"
+        height="100%"
+    >
+        <form:SimpleForm id="conReqSimpleForm">
+            <!-- Main HBox to hold Left and Right sections -->
+            <HBox
+                id="conReqHboxCustomerDetails"
+                width="100%"
+                justifyContent="SpaceBetween"
+            >
+                <VBox id="conReqVboxCustomerDetails">
+                    <Title
+                        id="conReqTitleCustomerDetails"
+                        text="Customer Details"
+                        class="sapUiMediumMarginBegin sapUiSmallMarginTopBottom"
+                    />
+
+                    <!-- HBox for Customer Name and Customer No -->
+                    <HBox
+                        id="conReqHBoxCustomerInfo"
+                        width="100%"
+                        class="sapUiSmallMarginBegin"
+                    >
+                        <VBox
+                            id="conReqVBoxCustomerNo"
+                            width="45%"
+                        >
+                            <Label
+                                id="conReqLabelCustomerNo"
+                                text="Customer No"
+                                textDirection="LTR"
+                                required="true"
+                                class="sapUiMediumMarginBegin sapUiSmallMarginEnd"
+                            />
+                            <Input
+                                id="conReqInputCustomerNo"
+                                width="200px"
+                                editable="false"
+                                class="sapUiMediumMarginBegin sapUiSmallMarginBottom sapUiSmallMarginEnd"
+                                value="1100000003"
+                            />
+                        </VBox>
+                        <VBox
+                            id="conReqVBoxCustomerName"
+                            width="45%"
+                        >
+                            <Label
+                                id="conReqLabelCustomerName"
+                                text="Customer Name"
+                                textDirection="LTR"
+                                required="true"
+                                class="sapUiLargeMarginBegin"
+                            />
+                            <Input
+                                id="conReqInputCustomerName"
+                                width="200px"
+                                editable="false"
+                                class="sapUiLargeMarginBegin sapUiSmallMarginBottom"
+                                value="MRCF INDUSTRIES"
+                            />
+                        </VBox>
+                    </HBox>
+                </VBox>
+            </HBox>
+        </form:SimpleForm>
+
+        <HBox
+            id="conReqHboxDropdown1"
+            width="100%"
+            justifyContent="SpaceBetween"
+            class="sapUiTinyMargin"
+        >
+            <VBox
+                id="conReqVboxContractType"
+                width="45%"
+            >
+                <Label
+                    id="conReqLabelContractType"
+                    text="Contract Type:"
+                    class="sapUiLargeMarginBegin"
+                />
+                <Select
+                    id="conReqSelectContractType2"
+                    width="200px"
+                    selectedKey="ZGSA"
+                   change=".onSelectDropdown"
+                    class="sapUiLargeMarginBegin"
+                >
+                <core:Item id="conReqItemGSA" key="ZGSA" text="ZGSA" />
+                <core:Item id="conReqItemGTA" key="ZGTA" text="ZGTA" />
+                </Select>
+            </VBox>
+        </HBox>
+
+        <form:SimpleForm
+            id="conReqFormOption1"
+            visible="true"
+        >
+            <VBox
+                id="conReqVbox2"
+                width="100%"
+            >
+                <HBox
+                    id="conReqHbox3"
+                    class="sapUiLargeMarginBegin"
+                >
+                    <VBox
+                        id="conReqVbox3"
+                        width="45%"
+                        class="csscustomerportal"
+                    >
+                        <Label
+                            id="conReqLabelSoldToParty"
+                            text="Sold To Party"
+                            required="true"
+                            textDirection="LTR"
+                        />
+                        <HBox>
+                            <Input
+                                id="conReqSoldTP_id"
+                                width="200px"
+                                showValueHelp="true"
+                                valueHelpOnly="true"
+                                valueHelpRequest="onSoldToParty"
+                            />
+                            <Input
+                                id="soldTPDescID"
+                                value="{customerDataModel>/customerData/Sold_Party_Text}"
+                                width="200px"
+                                editable="false"
+                                visible="false"
+                                class="sapUiTinyMarginBegin"
+                            />
+                        </HBox>
+
+                        <Label
+                            id="conReqLabelSalesOrg"
+                            text="Sales Organization"
+                            required="true"
+                            textDirection="LTR"
+                        />
+                        <HBox>
+                                    <Select
+                                        id="SalesOrg_id"
+                                        change="onSalesOrgChange"
+                                        forceSelection="true"
+                                        width="200px"
+                                        items="{customerDataModel>/SalesOrgs}"
+                                    >
+                                        <core:ListItem
+                                            key="{customerDataModel>SalesOrgID}"
+                                            text="{customerDataModel>SalesOrgID}"
+                                        />
+                                    </Select>
+                                    <Input
+                                        id="salesOrgDescID"
+                                        width="200px"
+                                        editable="false"
+                                        visible="false"
+                                        value="{customerDataModel>/customerData/SalesOrgText}"
+                                        class="sapUiTinyMarginBegin"
+                                    />
+                                </HBox>
+
+                        <Label
+                            id="conReqLabelDistributionChannel"
+                            text="Distribution Channel"
+                            required="true"
+                            textDirection="LTR"
+                        />
+                        <HBox >
+                        <Input
+                            id="conReqInputDistributionChannel"
+                            width="200px"
+                            editable="false"
+                             value="{customerDataModel>/customerData/Chnl_Dis}"
+                        />
+                        <Input
+                                        id="distChanDescID"
+                                        width="200px"
+                                        editable="false"
+                                        visible="false"
+                                        value="{customerDataModel>/customerData/Chnl_Dis_Text}"
+                                        class="sapUiTinyMarginBegin"
+                                    />
+                        </HBox>
+                        <Label
+                            id="conReqLabelDivision"
+                            text="Division"
+                            required="true"
+                            textDirection="LTR"
+                        />
+                        <HBox >
+                        <Input
+                            id="conReqInputDivision"
+                            width="200px"
+                            editable="false"
+                             value="{customerDataModel>/customerData/Division}"
+                        />
+                         <Input
+                                        id="divisionDescID"
+                                        width="200px"
+                                        editable="false"
+                                        visible="false"
+                                        value="{customerDataModel>/customerData/Division_Text}"
+                                        class="sapUiTinyMarginBegin"
+                                    />
+                        </HBox>
+                        
+                    </VBox>
+
+                    <VBox
+                        id="conReqVbox4"
+                        width="45%"
+                        class= "sapUiTinyMarginBegin"
+                    >
+                        <Label
+                            id="conReqLabelShipToParty"
+                            text="Ship To Party"
+                            required="true"
+                            textDirection="LTR"
+                        />
+                        <HBox >
+                        <Input
+                            id="conReqShipTP_id"
+                            width="200px"
+                             value="{customerDataModel>/customerData/Ship_Party}"
+                            showValueHelp="true"
+                            valueHelpOnly="true"
+                            valueHelpRequest="onShipToParty"
+                        />
+                         <Input
+                                        id="ShipTPDescID"
+                                        value="{customerDataModel>/customerData/Ship_Party_Text}"
+                                        width="200px"
+                                        editable="false"
+                                        visible="false"
+                                        class="sapUiTinyMarginBegin"
+                                    />
+                        </HBox>
+                        <Label
+                            id="conReqLabelContractDesc"
+                            text="Contract Description"
+                            required="true"
+                            textDirection="LTR"
+                        />
+                        <Input
+                            width="200px"
+                            id="conReqContractDescForm1"
+                        />
+                        
+                        <Label
+                            id="conReqLabelValidFrom"
+                            text="Valid From"
+                            required="true"
+                            textDirection="LTR"
+                        />
+                        <DatePicker
+                            id="conReqDatepickerValidFrom"
+                            width="200px"
+                        />
+                        <Label
+                            id="conReqLabelValidTo"
+                            text="Valid To"
+                            required="true"
+                            textDirection="LTR"
+                        />
+                        <DatePicker
+                            id="conReqDatepickerValidTo"
+                            width="200px"
+                        />
+                    </VBox>
+                </HBox>
+            </VBox>
+        </form:SimpleForm>
+
+        <!--Capacity Details -->
+
+        <HBox
+            id="conReqhboxCapacityDetails"
+            width="100%"
+            justifyContent="SpaceBetween"
+        >
+            <VBox
+                id="conReqvboxCapacityDetails"
+                width="45%"
+            >
+                <Title
+                    id="conReqTitleCapacityDetails"
+                    text="Capacity Details"
+                    textAlign="Center"
+                    class="sapUiMediumMarginBegin sapUiSmallMarginTopBottom"
+                />
+            </VBox>
+        </HBox>
+        <!--this is the capacity form-->
+        <form:SimpleForm
+            id="conReqFormOption5"
+            visible="true"
+        >
+            <!-- Customer Details Title -->
+            <VBox
+                id="conReqVboxMaterilalBox"
+                width="100%"
+            >
+                <!-- Contract Type Label and Select -->
+                <HBox
+                    id="conReqHboxMaterialBox"
+                    class="sapUiLargeMarginBegin"
+                >
+                    <VBox
+                        id="conReqVbox5"
+                        width="45%"
+                        class="csscustomerportal"
+                    >
+                        <Label
+                            id="conReqLabelMaterial"
+                            text="Material"
+                            required="true"
+                            textDirection="LTR"
+                        />
+                        <HBox id="conReqMaterialBox">
+                            <Input
+                                id="conReqMaterialID67"
+                                width="200px"
+                                showValueHelp="true"
+                                valueHelpOnly="true"
+                                valueHelpRequest="onMaterial"
+                                value=""
+                                required="true"
+                                change="onFieldSave"
+                            />
+                            <Input
+                                id="conReqMaterialDesc"
+                                width="200px"
+                                value=""
+                                editable="false"
+                                visible="false"
+                                class="sapUiTinyMarginBegin"
+                            />
+                        </HBox>
+
+                        <Label
+                            id="conReqLabelUOM"
+                            text="UOM"
+                            required="true"
+                            textDirection="LTR"
+                        />
+                        <Input
+                            id="conReqCUSPoUOM"
+                            width="200px"
+                            showValueHelp="true"
+                            valueHelpOnly="true"
+                            valueHelpRequest="onUOM"
+                        />
+                        <Label
+                            id="conReqLabelDPAccDCQ"
+                            text="DP accumulated DCQ"
+                            required="true"
+                            textDirection="LTR"
+                        />
+                        <Input
+                            id="conReqDPAccDCQ"
+                            width="200px"
+                            editable="false"
+                        />
+                        <Label
+                            id="conReqLabelRDPAccDCQ"
+                            text="RDP accumulated DCQ"
+                            required="true"
+                            textDirection="LTR"
+                        />
+                        <Input
+                            id="conReqRDPAccDCQ"
+                            width="200px"
+                            editable="false"
+                        />
+                        <Label
+                            id="conReqLabelFuelConsumption"
+                            text="Fuel Consumption"
+                            required="true"
+                            labelFor="conReqFuelConsumptionGroup"
+                        />
+                        <RadioButtonGroup
+                            id="conReqFuelConsumptionGroup"
+                            columns="2"
+                            selectedIndex="-1"
+                            select="onFuelConsumptionChange"
+                        >
+                            <buttons>
+                                <RadioButton
+                                    id="conReqRadioFuelConsumption"
+                                    text="Yes"
+                                    key="yes"
+                                />
+                                <RadioButton
+                                    id="conReqRadioFuelConsumption2"
+                                    text="No"
+                                    key="no"
+                                />
+                            </buttons>
+                        </RadioButtonGroup>
+                    </VBox>
+
+                    <VBox
+                        id="conReqVboxMaterialBox2"
+                        width="45%"
+                    >
+                        <Label
+                            id="conReqLabelPlant"
+                            text="Plant"
+                            required="true"
+                            textDirection="LTR"
+                            class="sapUiTinyMarginBegin"
+                        />
+                        <HBox id="conReqCUSPoPlant">
+                            <Input
+                                id="conReqCUSPoPlantID"
+                                width="200px"
+                                showValueHelp="true"
+                                valueHelpOnly="true"
+                                valueHelpRequest="onPlant"
+                                value=""
+                                required="true"
+                                change=""
+                                class="sapUiTinyMarginBegin"
+                            />
+                            <Input
+                                id="conReqPlantDESC"
+                                width="200px"
+                                editable="false"
+                                visible="false"
+                                class="sapUiTinyMarginBegin"
+                                value="{plantModel>/selectedPlant/PlantDesc}"
+                            />
+                        </HBox>
+                        <Label
+                            id="conReqLabelServiceProfile"
+                            text="Service Profile"
+                            required="true"
+                            textDirection="LTR"
+                            class="sapUiTinyMarginBegin"
+                        
+                        />
+                        <HBox id="conReqServiceProfileID">
+                            <Select
+                                id="conReqServiceProfileid"
+                                width="200px"
+                                class="sapUiTinyMarginBegin"
+                                items="{serviceProfileModel>/serviceProfiles}"
+                                selectedKey="{serviceProfileModel>/selectedServiceProfile}"
+                            > 
+                            <core:Item
+                                            key="{serviceProfileModel>serviceProfileName}"
+                                            text="{serviceProfileModel>serviceProfileName}"
+                                        />
+                                        </Select>
+                            <Input
+                                id="conReqServiceProfileDesc"
+                                width="200px"
+                                editable="false"
+                                visible="false"
+                                class="sapUiTinyMarginBegin"
+                            />
+                        </HBox>
+                        <Label
+                            id="conReqLabelDPTargetQuantity"
+                            text="DP Target Quantity"
+                            required="true"
+                            textDirection="LTR"
+                            class="sapUiTinyMarginBegin"
+                        />
+                        <Input
+                            id="conReqDPTargetQuantity"
+                            width="200px"
+                            editable="false"
+                            class="sapUiTinyMarginBegin"
+                        />
+                        <Label
+                            id="conReqLabelRDPTargetQuantity"
+                            text="RDP Target Quantity"
+                            required="true"
+                            textDirection="LTR"
+                            class="sapUiTinyMarginBegin"
+                        />
+                        <Input
+                            id="conReqRDPTargetQuantity"
+                            width="200px"
+                            editable="false"
+                            class="sapUiTinyMarginBegin"
+                        />
+                        <Label
+                            id="conReqLabelFuelLocation"
+                            text="Fuel Location"
+                            textDirection="LTR"
+                            class="sapUiTinyMarginBegin"
+                            visible="{= ${/fuelConsumptionEnabled} === true }"
+                        />
+                        <Input
+                            id="conReqFuelLocation"
+                            width="200px"
+                            class="sapUiTinyMarginBegin"
+                            showValueHelp="true"
+                            valueHelpOnly="true"
+                            valueHelpRequest=""
+                            value=""
+                            visible="{= ${/fuelConsumptionEnabled} === true }"
+                        />
+                    </VBox>
+                </HBox>
+            </VBox>
+        </form:SimpleForm>
+
+        <!-- add Delivery/Redelivery -->
+
+        <Table
+            id="conReqRDPTable"
+            class="tableBorder sapUiTinyMargin"
+        >
+            <columns>
+                <Column id="conReqColDeliveryPoint">
+                    <Label
+                        id="conReqLabelDeliveryPoint"
+                        text="Delivery Point"
+                        required="true"
+                    />
+                </Column>
+                <Column
+                    id="conReqColdpDESC"
+                    visible="false"
+                >
+                    <Label
+                        id="conReqLabelDPDescription"
+                        text="DP Description"
+                        required="true"
+                    />
+                </Column>
+                <Column id="conReqColDPDCQ">
+                    <Label
+                        id="conReqLabelDPDCQ"
+                        text="DP DCQ"
+                        required="true"
+                    />
+                </Column>
+                <Column id="conReqColRedeliveryPoint">
+                    <Label
+                        id="conReqLabelRedeliveryPoint"
+                        text="Redelivery Point"
+                        required="true"
+                    />
+                </Column>
+                <Column
+                    id="conReqColrdpDESC"
+                    visible="false"
+                >
+                    <Label
+                        id="conReqRdpdescLabel"
+                        text="RDP Description"
+                        required="true"
+                    />
+                </Column>
+                <Column id="conReqColRDPDCQ">
+                    <Label
+                        id="conReqLabelRDPDCQ"
+                        text="RDP DCQ"
+                        required="true"
+                    />
+                </Column>
+                <Column id="conReqColValidFrom">
+                    <Label
+                        id="conReqLabelValidFromMB"
+                        text="Valid From"
+                        required="true"
+                    />
+                </Column>
+                <Column id="conReqColValidTo">
+                    <Label
+                        id="conReqLabelValidToMB"
+                        text="Valid To"
+                        required="true"
+                    />
+                </Column>
+                <Column id="conReqColPath">
+                    <Label
+                        id="conReqLabelPath"
+                        text="Path"
+                    />
+                </Column>
+                <!-- Fuel Percentage -->
+                <Column id="conReqFuelPercentageColumn">
+                    <Label
+                        id="conReqLabelFuelPercentage"
+                        text="Fuel Percentage"
+                    />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem id="conReqColumnListItemMB">
+                    <cells>
+                        <!--Delivery Point-->
+                        <Input
+                            id="conReqDelivery_id"
+                            width="100px"
+                            showValueHelp="true"
+                            valueHelpRequest="onOpenDelivery"
+                            change="CUSPoservCatDetail"
+                        />
+                        <!--DP Description-->
+                        <Input
+                            id="conReqDPDescInput"
+                            width="100px"
+                            value=""
+                            editable="false"
+                        />
+                        <!--DP DCQ-->
+                        <Input
+                            id="conReqDPDCQInput"
+                            width="100px"
+                            value=""
+                            
+                        />
+                        <!-- Redelivery Point -->
+                        <Input
+                            id="conReqRedelivery_id"
+                            width="100px"
+                            showValueHelp="true"
+                            valueHelpRequest="onOpenRDP"
+                            valueHelpOnly="true"
+                            change="CUSPoservCatDetail2"
+                        />
+                        <!--RDP Description-->
+                        <Input
+                            id="conReqRdpdescInput"
+                            width="100px"
+                            value=""
+                            editable="false"
+                        />
+                        <!--RDP DCQ-->
+                        <Input
+                            id="conReqRDPDCQInput"
+                            width="100px"
+                            value=""
+                            editable="true"
+                        />
+                        <!-- Valid From DatePicker -->
+                        <DatePicker
+                            id="conReqValidFromDatePicker"
+                            width="100px"
+                            placeholder="Select Date"
+                        />
+                        <!-- Valid To DatePicker -->
+                        <DatePicker
+                            id="conReqValidToDatePicker"
+                            width="100px"
+                            placeholder="Select Date"
+                        />
+                        <!--Path-->
+                        <Input
+                            id="conReqPathInput"
+                            width="100px"
+                            value=""
+                            editable="false"
+                        />
+                        <!-- Fuel Percentage -->
+                        <Input
+                            id="conReqFuelPercentageInput"
+                            width="100px"
+                            value=""
+                            editable="false"
+                        />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+
+        <!-- clause information  -->
+
+        <!-- Main HBox to hold Left and Right sections -->
+        <Table
+            items="{valueParameterModel>/}"
+            mode="None"
+            id="conReqValueParameterTable"
+            class="tableBorder sapUiTinyMargin"
+        >
+            <columns>
+                <Column
+                    id="conReqColValueParameter"
+                    width="10rem"
+                >
+                    <header>
+                        <Label
+                            id="conReqTitleValueParameter"
+                            text="Value Parameter"
+                        />
+                    </header>
+                </Column>
+                <Column
+                    id="conReqColValue"
+                    width="10rem"
+                >
+                    <header>
+                        <Label
+                            id="conReqTitleValue"
+                            text="Value"
+                            required="true"
+                        />
+                    </header>
+                </Column>
+                <Column
+                    id="conReqColTitle"
+                    width="40rem"
+                >
+                    <header>
+                        <Title id="conReqTitle" />
+                    </header>
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem id="conReqColumnListItem10">
+                    <cells>
+                        <Text id="conReqServiceParameterText" />
+                        <Input
+                            id="conReqInputValue"
+                            width="100px"
+                            change="targetQuantityCal"
+                            required="true"
+                        />
+                        <Label
+                            id="conReqUomUnitDerived"
+                            text=""
+                        />
+                        <Text
+                            id="conReqServiceParameterIDText"
+                            visible="false"
+                        />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+
+        <!-- Left Section -->
+        <HBox
+            id="conReqHboxClauseInformation"
+            width="100%"
+            justifyContent="SpaceBetween"
+        >
+            <VBox
+                id="conReqVboxClauseInformation"
+                width="45%"
+            >
+                <Title
+                    id="conReqTitleClauseInformation"
+                    text="Clause Information"
+                    textAlign="Center"
+                    class="sapUiMediumMarginBegin sapUiSmallMarginTopBottom"
+                />
+            </VBox>
+
+            <Button
+                id="conReqButtonAddClause"
+                text="Add Clause"
+                press="onClausePress"
+                class="sapUiTinyMargin"
+                type="Emphasized"
+            />
+        </HBox>
+        <VBox id="conReqVboxClauseCode">
+            <Table
+                id="conReqClCodeTable"
+                class="tableBorder sapUiTinyMargin"
+            >
+                <columns>
+                    <Column id="conReqClCodeTableColClauseCode">
+                        <Label
+                            id="conReqClCodeLabelClauseCode"
+                            text="Clause Code"
+                            required="true"
+                        />
+                    </Column>
+                    <Column id="conReqClCodeTableColValidFrom">
+                        <Label
+                            id="conReqClCodeLabelValidFrom"
+                            text="Valid From"
+                            required="true"
+                        />
+                    </Column>
+                    <Column id="conReqClCodeTableColValidTo">
+                        <Label
+                            id="conReqClCodeLabelValidTo"
+                            text="Valid To"
+                            required="true"
+                        />
+                    </Column>
+                    <Column id="conReqClCodeTableColThreshold">
+                        <Label
+                            id="conReqClCodeLabelThreshold"
+                            text="Threshold%"
+                            required="true"
+                        />
+                    </Column>
+                    <Column id="conReqClCodeTableColThresholdReference">
+                        <Label
+                            id="conReqClCodeLabelThresholdReference"
+                            text="Threshold Reference"
+                            required="true"
+                        />
+                    </Column>
+                    <Column id="conReqClCodeTableColRemark">
+                        <Label
+                            id="conReqClCodeLabelRemark"
+                            text="Remark"
+                        />
+                    </Column>
+                    <Column
+                        id="conReqClCodeTableColAction"
+                        width="4rem"
+                    >
+                        <Text
+                            id="conReqClCodeLabelAction"
+                            text="Action"
+                        />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem id="conReqClCodeTableItem">
+                        <cells>
+                            <Select
+                                id="conReqClCodeSelect1"
+                                forceSelection="false"
+                                width="150px"
+                            >
+                                <core:Item
+                                    id="conReqItemMaxDCQ"
+                                    text="Max DCQ"
+                                />
+                                <core:Item
+                                    id="conReqItemMinDCQ"
+                                    text="Min DCQ"
+                                />
+                            </Select>
+                            <DatePicker
+                                id="conReqClCodeDatePickerFrom"
+                                width="150px"
+                                value=""
+                                required="true"
+                            />
+                            <DatePicker
+                                id="conReqClCodeDatePickerTo"
+                                width="150px"
+                                value=""
+                                required="true"
+                            />
+                            <Input
+                                id="conReqClCodeInputThreshold"
+                                width="100px"
+                                value=""
+                            />
+                            <Select
+                                id="conReqClCodeSelect2"
+                                width="150px"
+                                forceSelection="false"
+                            >
+                                <core:Item
+                                    id="conReqItemDCQ"
+                                    key="DCQ"
+                                    text="DCQ"
+                                />
+                                <core:Item
+                                    id="conReqItemMaxDCQ2"
+                                    key="Max DCQ"
+                                    text="Max DCQ"
+                                />
+                                <core:Item
+                                    id="conReqItemMinDCQ2"
+                                    key="Min DCQ"
+                                    text="Min DCQ"
+                                />
+                            </Select>
+                            <Input
+                                id="conReqClCodeInputThresholdReference"
+                                width="100px"
+                                value=""
+                                required="true"
+                            />
+                            <Button
+                                id="conReqClCodeActionBtn"
+                                icon="sap-icon://delete"
+                                press="onDeletePress"
+                            />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </VBox>
+
+        <!-- ALLOCATION PARAMETER -->
+        <Table
+            id="conReqAllocTable"
+            items="{allocModel>/allocLevel}"
+        >
+            <headerToolbar>
+                <Toolbar id="conReqToolbarAP">
+                    <Title
+                        id="conReqTitleAP"
+                        text="Allocation Parameters"
+                    />
+                </Toolbar>
+            </headerToolbar>
+            <columns>
+                <Column id="conReqColumnLevel">
+                    <Text
+                        id="conReqLabelLevel"
+                        text="Level"
+                    />
+                </Column>
+                <Column id="conReqColumnParameters">
+                    <Label
+                        id="conReqLabelParameters"
+                        text="Parameters"
+                        required="true"
+                    />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem id="conReqColumnListItemAP">
+                    <cells>
+                        <Text
+                            id="conReqTextAP"
+                            text="{allocModel>Level}"
+                        />
+                        <Select
+                            id="conReqSelectAP"
+                            selectedKey="{allocModel>selectedParam}"
+                            width="200px"
+                            forceSelection="false"
+                        >
+                            <!-- DYNAMIC ITEMS -->
+                        </Select>
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+
+        <Table
+            id="dynamicTable"
+            mode="MultiSelect"
+            items="{path: 'parameterModel>/dynamicRows'}"
+            visible="false"
+            selectionChange=".onSelectionChange"
+        >
+            <columns>
+                <Column id="conReqColumnServieParameter">
+                    <Text
+                        id="conReqTextServiceParameter"
+                        text="Service Parameter"
+                    />
+                </Column>
+                <Column id="conReqColumnInputValue">
+                    <Text
+                        id="conReqTextInputValue"
+                        text="Input Value"
+                    />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem id="conReqColumnListItemSP">
+                    <cells>
+                        <Text
+                            id="conReqTextSP"
+                            text="{parameterModel>serviceParameter}"
+                        />
+                        <Input
+                            id="conReqInputSP"
+                            visible="{parameterModel>showInput}"
+                            placeholder="Enter value"
+                            width="300px"
+                        />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </ScrollContainer>
+</mvc:View>

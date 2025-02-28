@@ -1,0 +1,526 @@
+<mvc:View controllerName="customerportal.controller.customerNomination"
+    xmlns:form="sap.ui.layout.form"
+    height="100%"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:u="sap.ui.unified"
+    xmlns:tnt="sap.tnt"
+    xmlns:filterbar="sap.ui.comp.filterbar"
+    xmlns:l="sap.ui.layout"         >
+    
+
+    <ScrollContainer
+                        id="root2"
+                        horizontal="false"
+                        vertical="true"
+                        height="100%"
+                    >
+                        <!-- <Text text="This is the Nomination page" /> -->
+                        <l:Splitter id="cusNomSplitter1" height="560px" width="100%">
+                        <Page
+                            id="cusNomPageContracts"
+                            title="Contracts"
+                            titleAlignment="Center"
+                            showNavButton="true"
+                            navButtonPress="onBackMat"
+                        >
+                            <VBox id="cusNomVBoxContracts" visible="true">
+                                <!-- Input Fields -->
+                                <Input
+                                    id="cusNomInputCustomerNumber"
+                                    width="100%"
+                                    value="1100000003"
+                                    editable="false"
+                                />
+                                <Input
+                                    id="cusNomInputContractDescription"
+                                    width="100%"
+                                    showValueHelp="true"
+                                    valueHelpRequest="onContDesc"
+                                    placeholder="Contract Description"
+                                />
+                                <!-- List for Contracts -->
+                                <List
+                                    id="cusNomListContracts"
+                                    items="{
+                                        path: 'newModelForContact>/data',
+                                        sorter : {
+                                            path : 'Vbeln',
+                                            descending: true 
+                                        }
+                                    }"
+                                >
+                                    <ObjectListItem
+                                        id="cusNomObjectListItemContract"
+                                        title="{newModelForContact>Vbeln}"
+                                        type="Navigation"
+                                        press="onSelectContract"
+                                    >
+                                        <ObjectAttribute
+                                            id="cusNomObjectAttributeContractDesc"
+                                            text="Contract Desc. : {newModelForContact>ContractDescription}"
+                                        />
+                                    </ObjectListItem>
+                                </List>
+                            </VBox>
+                            <VBox id="cusNomVBoxMaterials" visible="false">
+                                <List
+                                    id="cusNomListMaterials"
+                                    growing="true"
+                                    growingScrollToLoad="true"
+                                    growingThreshold="5"
+                                    items="{
+                                        path: 'materialModel>/selectedMaterials'
+                                    }"
+                                >
+                                    <ObjectListItem
+                                        id="cusNomObjectListItemMaterial"
+                                        title="Material: {materialModel>Material}"
+                                        type="Navigation"
+                                        press="onSelectMaterial"
+                                    >
+                                        <attributes>
+                                            <ObjectAttribute
+                                                id="cusNomObjectAttributeRedeliveryPt"
+                                                title="Re-Delivery Points"
+                                                text="{path: 'materialModel>RedeliveryPt'}"
+                                            />
+                                            <ObjectAttribute
+                                                id="cusNomObjectAttributeDeliveryPt"
+                                                title="Delivery Points"
+                                                text="{path: 'materialModel>DeliveryPt'}"
+                                                visible="false"
+                                            />
+                                        </attributes>
+                                    </ObjectListItem>
+                                </List>
+                            </VBox>
+                            <layoutData>
+                                <l:SplitterLayoutData id="cusNomSplitterLayoutData1" size="26%" minSize="200px" />
+                            </layoutData>
+                        </Page>
+
+                        <Page
+                            id="cusNomPageNominationDetails"
+                            title="Nomination Details"
+                            titleAlignment="Center"
+                        >
+                            <f:SimpleForm
+                                id="cusNomSimpleFormNominationDetails"
+                                editable="false"
+                                layout="ResponsiveGridLayout"
+                                singleContainerFullSize="false"
+                                class="formClass"
+                            >
+                                <f:content>
+                                    <VBox id="cusNomVBoxNominationDetails">
+                                        <List id="cusNomListNominationDetails">
+                                            <DisplayListItem
+                                                id="cusNomDisplayListItemContractID"
+                                                label="Contract ID:"
+                                                value="{modelData>/Vbeln}"
+                                            />
+                                            <DisplayListItem
+                                                id="cusNomDisplayListItemMaterialID"
+                                                label="Material:"
+                                                value="{modelData>/Material}"
+                                            />
+                                            <DisplayListItem
+                                                id="cusNomDisplayListItemDocTypeID"
+                                                label="Contract Desc:"
+                                                value="{modelData>/ContractDescription}"
+                                            />
+                                        </List>
+                                        <List id="dynamicFieldLists" showNoData="false" items="{modelData>/dynamicFields}">
+                                    <items>
+                                        <DisplayListItem id="minMaxDcq" label="{modelData>label}" value="{modelData>value}" />
+                                    </items>
+                                </List>
+                                    </VBox>
+                                    <!-- <VBox id="cusNomVBoxParameters">
+                                        <List id="cusNomListParameters" items="{/parameters}">
+                                            <StandardListItem
+                                                id="cusNomStandardListItemParameters"
+                                                title="{name}"
+                                                description="{value}"
+                                            />
+                                        </List>
+                                    </VBox> -->
+                                </f:content>
+                            </f:SimpleForm>
+                            
+                            <!-- <Table id="cusNomTableItemDetails">
+                                <columns>
+                                    <Column id="cusNomColumnGasDay" width="300px">
+                                        <Label
+                                            id="cusNomLabelGasDay"
+                                            text="Gas Day"
+                                            width="300px"
+                                            required="true"
+                                        />
+                                    </Column>
+                                </columns>
+                                <ColumnListItem id="cusNomColumnListItemGasDay">
+                                    <cells>
+                                        <DatePicker
+                                            id="cusNomDatePickerGasDay"
+                                            width="200px"
+                                            change="onSelectOption"
+                                            displayFormat="dd-MM-yyyy"
+                                            valueFormat="yyyy-MM-dd"
+                                        />
+                                    </cells>
+                                </ColumnListItem>
+                                
+                            </Table> -->
+                             <Bar id="cusNomColumnGasDay" class="sapUiSmallMarginTop">
+                                <contentLeft>
+                                    <Label id="cusNomLabelGasDay" text="Gas Day" required="true" class="sapUiSmallMarginBegin" />
+                                </contentLeft>
+                                <contentRight>
+                                    <DatePicker id="cusNomDatePickerGasDay" placeholder="Select Gas Day" valueFormat="yyyy-MM-dd" minDate="{}" liveChange="onSelectOption" displayFormat="dd-MM-yyyy" width="200px"/>
+                                </contentRight>
+                            </Bar>
+
+                                <Table id="cusNomDelPointTable" visible="false" items="{DelvModelData>/DeliveryPoints}">
+                                    <headerToolbar>
+                                        <OverflowToolbar id="cusNomOverflowToolbar3">
+                                            <Text
+                                                id="cusNomTitleNominateQty"
+                                                text="Nominate Quantity For Delivery"
+                                                textAlign="Center"
+                                            />
+                                            <ToolbarSpacer id="cusNomToolbarSpacer4" />
+                                                <Button id="CusNomDelAdd" icon="sap-icon://add"  type="Emphasized" press="onAddPressDel" />
+                                                <Button id="CusNomDelDel" icon="sap-icon://delete" type="Reject" press="onDeletePressDel"/>
+                                        </OverflowToolbar>
+                                    </headerToolbar>
+                                    <columns>
+                                        <Column id="cusNomColumnDeliveryPoint">
+                                            <Text id="cusNomTextDeliveryPoint" text="Delivery Point" />
+                                        </Column>
+                                        <Column id="cusNomColumnDailyNominateQty">
+                                            <Label
+                                                id="cusNomLabelDailyNominateQty"
+                                                required="true"
+                                                text="Daily Nominate Quantity"
+                                            />
+                                        </Column>
+                                        <Column id="cusNomColumnUOM">
+                                            <Text id="cusNomTextUOM" text="UOM" />
+                                        </Column>
+                                        <Column id="conNomDelColValidFrom">
+                                        <Label
+                                            id="conNomDelLabelValidFrom"
+                                            text="From"
+                                        />
+                                    </Column>
+                                    <Column id="conNomDelColValidTo">
+                                        <Label
+                                            id="conNomDelLabelValidTo"
+                                            text="To"
+                                        />
+                                        </Column>
+                                        <Column id="cusNomColumnEvent">
+                                            <Text id="cusNomTextEvent" text="Event" />
+                                        </Column>
+                                    </columns>
+                                    <ColumnListItem id="cusNomColumnListItemDelivery">
+                                        <cells>
+                                            <Input id="cusNomInputDeliveryPoint" editable="false" value="{DelvModelData>DeliveryPt}"/>
+                                            <VBox id="cusNomVBoxNominateQty">
+                                                <Text id="cusNomTextNominateQty" class="" text="" />
+                                                <Input
+                                                    id="cusNomInputNominateQty"
+                                                    liveChange="DcqValidation"
+                                                />
+                                                <Text id="cusNomTextMessage" class="message" text="" />
+                                            </VBox>
+                                            <Input id="cusNomInputUOM" editable="false" value="{DelvModelData>UOM}"/>
+                                            <TimePicker
+                                                id="conNomDelValidFromDatePicker"
+                                                value="{DelvModelData>From}"
+                                                placeholder="HH:mm"
+                                                valueFormat="HH:mm:ss"
+                                                displayFormat="HH:mm"
+                                                change="onTimeChange"
+                                            ></TimePicker>
+                                            <!-- Valid To DatePicker -->
+                                            <TimePicker
+                                                id="conNomDelValidToDatePicker"
+                                                value="{DelvModelData>To}"
+                                                placeholder="HH:mm"
+                                                valueFormat="HH:mm:ss"
+                                                displayFormat="HH:mm"
+                                                change="onTimeChange"
+                                            />
+                                            <Select
+                                                id="cusNomSelectEvent"
+                                                change="EventGTA"
+                                                forceSelection="false"
+                                                width="200px"
+                                            >
+                                                <core:ListItem
+                                                    id="cusNomListItemNoEvent"
+                                                    key=""
+                                                    text="No-event"
+                                                />
+                                                <core:ListItem
+                                                    id="cusNomListItemForceMajeure"
+                                                    key="{key}"
+                                                    text="Force-Majeure"
+                                                />
+                                                <core:ListItem
+                                                    id="cusNomListItemUnderMaintenance"
+                                                    key="{key}"
+                                                    text="Under-Maintenance"
+                                                />
+                                            </Select>
+                                        </cells>
+                                    </ColumnListItem>
+                                </Table>
+
+                                <Table id="cusNomRedPointTable" items="{RedlvModelData>/RedeliveryPoints}" visible="true">
+                                    <!-- <headerToolbar>
+                                        <OverflowToolbar id="cusNomOverflowToolbarRDP">
+                                            <Text
+                                                id="cusNomTitleRDP"
+                                                text="Nominate Quantity For Re-Delivery Point"
+                                                textAlign="Center"
+                                            />
+                                            
+                                            <ToolbarSpacer id="cusNomToolbarSpacerRDP" />
+                                                <Button id="IdAddBtnForRedlv" icon="sap-icon://add"  type="Emphasized" press="onAddPress" />
+                                                <Button id="idDeleteBtnForRedlv" icon="sap-icon://delete" type="Reject" press="onDeletePress" />
+                                        </OverflowToolbar>
+                                    </headerToolbar> -->
+                                                    <headerToolbar>
+                                            <OverflowToolbar id="cusNomOverflowToolbarRDP">
+                                                <Title id="cusNomTitleRDP" text="Nominate Quantity for Re-Delivery" textAlign="Center" level="H2" />
+                                                <ToolbarSpacer id="cusNomToolbarSpacerRDP" />
+                                                <ToolbarSpacer id="cusNomToolbarSpacerRDP2" />
+                                                <Text id="totalReDNQLabel" text="Total DNQ:" width="auto" />
+                                                <FormattedText id="totalReDNQValue" htmlText="0.000" width="60px"  />
+                                            <Button id="IdAddBtnForRedlv" icon="sap-icon://add"  type="Emphasized" press="onAddPress" />
+                                        <Button id="idDeleteBtnForRedlv" icon="sap-icon://delete" type="Reject" press="onDeletePress" />
+                                            </OverflowToolbar>
+                                        </headerToolbar>
+                                    <columns>
+                                        <Column id="cusNomColumnReDeliveryPoint">
+                                            <Text
+                                                id="cusNomTextReDeliveryPoint"
+                                                text="Re-Delivery Point"
+                                                width="7rem"
+                                            />
+                                        </Column>
+                                        <Column id="cusNomColumnDailyNominateQty2">
+                                            <Label
+                                                id="cusNomLabelDailyNominateQty2"
+                                                text="Daily Nominate Quantity"
+                                                width="15rem"
+                                                required="true"
+                                            />
+                                        </Column>
+                                        <Column id="cusNomColumnUOM2">
+                                            <Text id="cusNomTextUOM2" text="UOM" />
+                                        </Column>
+                                        <Column id="conNomColValidFrom">
+                                        <Label
+                                            id="conNomLabelValidFrom"
+                                            text="From"
+                                        />
+                                    </Column>
+                                    <Column id="conNomColValidTo">
+                                        <Label
+                                            id="conNomLabelValidTo"
+                                            text="To"
+                                        />
+                                    </Column>
+                                        <Column id="cusNomColumnEvent2">
+                                            <Text id="cusNomTextEvent2" text="Event" />
+                                        </Column>
+                                    </columns>
+                                    <ColumnListItem id="cusNomColumnListItemRDP">
+                                        <cells>
+                                            <Input id="cusNomInputReDeliveryPoint" value="{RedlvModelData>RedeliveryPt}" editable="false" />
+                                            <VBox id="cusNomVBoxNominateQtyRDP">
+                                                <Text
+                                                    class=""
+                                                    id="cusNomTextEmptyRDP"
+                                                    text=""
+                                                />
+                                                <Input
+                                                    id="cusNomInputNominateQtyRDP"
+                                                    change=".DnqValidation"
+                                                />
+                                                <Text
+                                                    class="message"
+                                                    id="cusNomTextMessageRDP"
+                                                    text=""
+                                                />
+                                            </VBox>
+                                            <Input id="cusNomInputUOMRDP" value="{RedlvModelData>UOM}"  editable="false" />
+                                            <!-- Valid From DatePicker -->
+                                            <TimePicker
+                                                id="conNomValidFromDatePicker"
+                                                value="{RedlvModelData>From}"
+                                                placeholder="HH:mm"
+                                                valueFormat="HH:mm:ss"
+                                                displayFormat="HH:mm"
+                                                change="onTimeChange"
+                                            />
+                                            <!-- Valid To DatePicker -->
+                                            <TimePicker
+                                                id="conNomValidToDatePicker"
+                                                value="{RedlvModelData>To}"
+                                                placeholder="HH:mm"
+                                                valueFormat="HH:mm:ss"
+                                                displayFormat="HH:mm"
+                                                change="onTimeChange"
+                                            />
+                                            <Select
+                                                id="cusNomSelectEventRDP"
+                                                change="EventsGSA"
+                                                forceSelection="false"
+                                                width="200px"
+                                            >
+                                                <core:ListItem
+                                                    id="cusNomListItemNoEventRDP"
+                                                    key="{No-event}"
+                                                    text="No-event"
+                                                />
+                                                <core:ListItem
+                                                    id="cusNomListItemForceMajeureRDP"
+                                                    key="{Force-Majeure}"
+                                                    text="Force-Majeure"
+                                                />
+                                                <core:ListItem
+                                                    id="cusNomListItemUnderMaintenanceRDP"
+                                                    key="{Under-Maintenance}"
+                                                    text="Under-Maintenance"
+                                                />
+                                            </Select>
+                                        </cells>
+                                    </ColumnListItem>
+                                </Table>
+
+                                <InputListItem id="cusNomInputListItemRemarks">
+                                    <Input
+                                        id="cusNomInputRemarks"
+                                        placeholder="Remarks.."
+                                        width="100%"
+                                        textAlign="End"
+                                    />
+                                </InputListItem>
+                                <Button
+                                    id="cusNomButtonSubmit"
+                                    text="Submit"
+                                    class="sapUiTinyMarginBegin"
+                                    type="Emphasized"
+                                    press="createNomination"
+                                />
+                                <Button
+                                    id="cusNomButtonSimulate"
+                                    text="Simulate"
+                                    type="Emphasized"
+                                    class="sapUiTinyMarginBegin"
+                                    press="Onsimulate"
+                                />
+
+                                <layoutData>
+                                    <l:SplitterLayoutData
+                                        id="cusNomSplitterLayoutData550px"
+                                        size="550px"
+                                        resizable="true"
+                                    />
+                                </layoutData>
+                                </Page>
+
+                                <l:Splitter id="cusNomSplitterPastNom" orientation="Vertical">
+                                    <Page
+                                        id="cusNomPagePastNomination"
+                                        title="Past Nomination"
+                                        titleAlignment="Center"
+                                    >
+                                        <Table
+                                            id="cusNomTablePastNomination"
+                                            items="{tktModel>/}"
+                                        >
+                                            <layoutData>
+                                                <l:SplitterLayoutData
+                                                    id="cusNomSplitterLayoutData300px"
+                                                    size="300px"
+                                                    resizable="true"
+                                                />
+                                            </layoutData>
+                                            <columns>
+                                                <Column id="cusNomColumnGasDay2">
+                                                    <Text
+                                                        id="cusNomTextGasDay"
+                                                        text="Gas Day"
+                                                    />
+                                                </Column>
+                                                <Column id="cusNomColumnApprovedDNQ">
+                                                    <Text
+                                                        id="cusNomTextApprovedDNQ"
+                                                        text="Approved DNQ"
+                                                    />
+                                                </Column>
+                                                <Column id="cusNomColumnUOM3">
+                                                    <Text
+                                                        id="cusNomTextUOM3"
+                                                        text="UOM"
+                                                    />
+                                                </Column>
+                                            </columns>
+                                            <items>
+                                                <ColumnListItem id="cusNomColumnListItemPastNomination">
+                                                    <cells>
+                                                        <Text
+                                                            id="cusNomTextCellGasDay"
+                                                            text="{tktModel>Gasday}"
+                                                        />
+                                                        <Text
+                                                            id="cusNomTextCellApprovedDNQ"
+                                                            text="{tktModel>Adnq}"
+                                                        />
+                                                        <Text
+                                                            id="cusNomTextCellUOM"
+                                                            text="{tktModel>Uom4}"
+                                                        />
+                                                    </cells>
+                                                </ColumnListItem>
+                                            </items>
+                                        </Table>
+                                        <layoutData>
+                                            <l:SplitterLayoutData
+                                                id="cusNomSplitterLayoutData20Percent"
+                                                size="20%"
+                                                minSize="200px"
+                                                resizable="true"
+                                            />
+                                        </layoutData>
+                                    </Page>
+                                    <VBox
+                                        id="cusNomVBoxChartContainer"
+                                        height="350px"
+                                    >
+                                        <layoutData>
+                                            <l:SplitterLayoutData
+                                                id="cusNomSplitterLayoutDataChart"
+                                                size="20%"
+                                                minSize="500px"
+                                                resizable="true"
+                                            />
+                                        </layoutData>
+                                    </VBox>
+                                </l:Splitter>
+
+                            </l:Splitter>
+                    </ScrollContainer>
+    
+    
+    
+</mvc:View>

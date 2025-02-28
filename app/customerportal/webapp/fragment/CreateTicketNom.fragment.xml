@@ -1,0 +1,36 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Dialog
+        id="idCreateTicketNom"
+        title="Support for Ticket Key"
+        afterClose="onCreateTicketDialogClose"
+        draggable="true"
+        resizable="true"
+        contentWidth="40%"
+        state="Information"
+        
+         class="sapUiContentPadding">
+        <content>
+            <VBox class="textAreaVbox">
+                <!-- Text Area -->
+             
+
+                <TextArea
+                    id="idTicketTextArea"
+                    placeholder="Enter your issue here..."
+                    rows="6"
+                    width="100%" />
+            </VBox>
+        </content>
+        <buttons>
+            <!-- Submit Button -->
+            <Button
+                text="Submit"
+                type="Emphasized"
+                press=".onSubmitTicket" />
+            <!-- Cancel Button -->
+            <Button
+                text="Cancel"
+                press=".onCreateTicketDialogClose" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

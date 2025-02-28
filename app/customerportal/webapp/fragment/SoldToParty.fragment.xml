@@ -1,0 +1,21 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <SelectDialog
+        id="soldToPartyId"
+        noDataText="Loading..."
+        title="Select Sold To Party"
+        search="onSearchSoldtoParty"
+        confirm="onConfirmSoldtoParty"
+        cancel="onCancelSoldtoParty"
+        items="{/xGMSxVendor_Data_Nav}"
+        growing= "true"
+        growingThreshold="500" >
+
+        <StandardListItem
+            title="{Sold_Party}"
+            description="{Sold_Party_Text}"
+            type="Active" />
+    </SelectDialog>
+</core:FragmentDefinition>

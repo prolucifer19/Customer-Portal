@@ -1,0 +1,20 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+
+    <SelectDialog
+        id="shipToParty"
+        noDataText="Loading..."
+        title="Select Ship To Party"
+        search="onValueHelpSearch3"
+        confirm="onValueHelpClose3"
+        cancel="onValueHelpClose3"
+        items="{/xGMSxVendor_Data_Nav}">
+        <StandardListItem id="_IDGenStandardListItem3"
+            title="{sales>ShipToPartie}"
+            description="{sales>SToPartytxt}"
+            iconDensityAware="false"
+            iconInset="false"
+            type="Active" />
+    </SelectDialog>
+</core:FragmentDefinition>

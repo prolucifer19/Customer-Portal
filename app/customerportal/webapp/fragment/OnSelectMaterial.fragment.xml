@@ -1,0 +1,22 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <SelectDialog
+        id="material01"
+        noDataText="Loading..."
+        title="Select Material"
+        search="onSearchMaterial"
+        confirm="onConfirmMaterial"
+        cancel="onCancelMaterial"
+        items="{/xGMSxMaterial_Data}"
+        growing="true"
+        growingThreshold="500">
+
+        <StandardListItem
+        
+            title="{Material}"
+            description="{Description}" 
+            type="Active" />
+    </SelectDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,22 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <SelectDialog
+        id="contractValueHelp"
+        noDataText="Loading..."
+        title="Select Contract No."
+    
+        liveChange="onValueHelpSearchContSupport"
+        confirm="onValueHelpCloseContract"
+        cancel="onValueHelpCloseContract"
+         items="{contractModel>/}"
+        initialFocus="SearchField">
+        <StandardListItem 
+            id="IDGenStandardListItem"
+            title="{contractModel>Vbeln}"
+        
+            iconDensityAware="false"
+            iconInset="false"
+            type="Active" />
+    </SelectDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0"
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="http://ingenxsrv:8001/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='')/$value"
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://ingenxsrv:8001/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='')/$value"
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://ingenxsrv:8001/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='')/$value"
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://ingenxsrv:8001/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='')/$value"
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://ingenxsrv:8001/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='')/$value"
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="xGMSxVENDOR_DATA_NAV_CDS" xml:lang="en" sap:schema-version="1"
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="xGMSxVendor_DataType" sap:label="Vendor Data from KNVV and KNA1" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Sold_Party"/>
+                    <PropertyRef Name="Sales_org"/>
+                    <PropertyRef Name="Chnl_Dis"/>
+                    <PropertyRef Name="Division"/>
+                </Key>
+                <Property Name="Sold_Party" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Sold To Party" sap:quickinfo="Customer Number"/>
+                <Property Name="Sales_org" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:label="Sales Organization"/>
+                <Property Name="Chnl_Dis" Type="Edm.String" Nullable="false" MaxLength="2" sap:display-format="UpperCase" sap:label="Distribution Channel"/>
+                <Property Name="Division" Type="Edm.String" Nullable="false" MaxLength="2" sap:display-format="UpperCase" sap:label="Division"/>
+                <Property Name="Sold_Party_Text" Type="Edm.String" MaxLength="70" sap:label="Sold To Party Text"/>
+                <Property Name="Patnr_Fn" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Partner Function"/>
+                <Property Name="Partnr_Fn_Text" Type="Edm.String" MaxLength="20" sap:label="Partner Function Text" sap:quickinfo="Name"/>
+                <Property Name="Ship_Party" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Ship To Party" sap:quickinfo="Customer number of business partner"/>
+                <Property Name="Ship_Party_Text" Type="Edm.String" MaxLength="70" sap:label="Ship To Party Text"/>
+                <Property Name="Sales_org_Text" Type="Edm.String" MaxLength="20" sap:label="Sales Organization Text" sap:quickinfo="Name"/>
+                <Property Name="Chnl_Dis_Text" Type="Edm.String" MaxLength="20" sap:label="Distribution Channel Text" sap:quickinfo="Name"/>
+                <Property Name="Division_Text" Type="Edm.String" MaxLength="20" sap:label="Division Text" sap:quickinfo="Name"/>
+            </EntityType>
+            <EntityType Name="xGMSxVendor_Data_NavType" sap:label="Vendor Data Nevigation" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Sold_Party"/>
+                </Key>
+                <Property Name="Sold_Party" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Sold To Party" sap:quickinfo="Customer Number"/>
+                <Property Name="Sold_Party_Text" Type="Edm.String" MaxLength="70" sap:label="Sold To Party Text"/>
+                <NavigationProperty Name="tovendor_data" Relationship="xGMSxVENDOR_DATA_NAV_CDS.assoc_08BBC4E4059C3529EAD265F06383A962" FromRole="FromRole_assoc_08BBC4E4059C3529EAD265F06383A962" ToRole="ToRole_assoc_08BBC4E4059C3529EAD265F06383A962"/>
+            </EntityType>
+            <Association Name="assoc_08BBC4E4059C3529EAD265F06383A962" sap:content-version="1">
+                <End Type="xGMSxVENDOR_DATA_NAV_CDS.xGMSxVendor_Data_NavType" Multiplicity="1" Role="FromRole_assoc_08BBC4E4059C3529EAD265F06383A962"/>
+                <End Type="xGMSxVENDOR_DATA_NAV_CDS.xGMSxVendor_DataType" Multiplicity="*" Role="ToRole_assoc_08BBC4E4059C3529EAD265F06383A962"/>
+            </Association>
+            <EntityContainer Name="xGMSxVENDOR_DATA_NAV_CDS_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="xGMSxVendor_Data" EntityType="xGMSxVENDOR_DATA_NAV_CDS.xGMSxVendor_DataType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="xGMSxVendor_Data_Nav" EntityType="xGMSxVENDOR_DATA_NAV_CDS.xGMSxVendor_Data_NavType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <AssociationSet Name="assoc_08BBC4E4059C3529EAD265F06383A962" Association="xGMSxVENDOR_DATA_NAV_CDS.assoc_08BBC4E4059C3529EAD265F06383A962" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="xGMSxVendor_Data_Nav" Role="FromRole_assoc_08BBC4E4059C3529EAD265F06383A962"/>
+                    <End EntitySet="xGMSxVendor_Data" Role="ToRole_assoc_08BBC4E4059C3529EAD265F06383A962"/>
+                </AssociationSet>
+            </EntityContainer>
+            <Annotations Target="xGMSxVENDOR_DATA_NAV_CDS.xGMSxVENDOR_DATA_NAV_CDS_Entities"
+                xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Aggregation.ApplySupported">
+                    <Record>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>aggregate</String>
+                                <String>groupby</String>
+                                <String>filter</String>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Rollup" EnumMember="None"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <atom:link rel="self" href="http://ingenxsrv:8001/sap/opu/odata/gms/VENDOR_DATA_NAV_CDS/$metadata"
+                xmlns:atom="http://www.w3.org/2005/Atom"/>
+                <atom:link rel="latest-version" href="http://ingenxsrv:8001/sap/opu/odata/gms/VENDOR_DATA_NAV_CDS/$metadata"
+                    xmlns:atom="http://www.w3.org/2005/Atom"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>

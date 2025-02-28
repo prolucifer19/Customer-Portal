@@ -1,0 +1,24 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <SelectDialog
+        id="contDesc1"
+        noDataText="No Description Found"
+        title="Select Contract Description"
+        search="onValueHelpSearchContDesc"
+        confirm="onValueHelpConfirmContDesc"
+        cancel="onValueHelpCancelContDesc"
+        growing="true"
+        items="{newModelForContact>/data}">
+
+        <StandardListItem 
+            id="_IDGenStandardListItemContDesc"
+            title="{Vbeln}"
+            description="{ContractDescription}"
+            iconDensityAware="false"
+            iconInset="false"
+            type="Active" />
+    </SelectDialog>
+
+</core:FragmentDefinition>

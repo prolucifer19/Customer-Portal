@@ -1,0 +1,28 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Dialog
+        id="raiseTicketDialog"
+        title="Support for Contract"
+        afterClose="onTicketDialogCloseCont"
+        draggable="true"
+        resizable="true"
+        contentWidth="40%"
+        state="Information"
+        
+         class="sapUiContentPadding">
+        <VBox>
+            <Text id="ticketText" text="Raising Ticket for contract No." textAlign="Center" />
+            <TextArea id="ticketTextArea" width="100%" placeholder="Enter your issue here..." rows="6" />
+        </VBox>
+        <beginButton>
+            <Button
+                text="Submit"
+                press="onSubmitTicketContract" 
+                type="Emphasized"
+                
+                />
+        </beginButton>
+         <endButton>
+            <Button text="Cancel" type="Default" press="_handleValueHelpClose1" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

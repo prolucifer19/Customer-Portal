@@ -1,0 +1,878 @@
+<mvc:View controllerName="customerportal.controller.contractAmendment"
+    xmlns:form="sap.ui.layout.form"
+    height="100%"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:u="sap.ui.unified"
+    xmlns:tnt="sap.tnt"
+    xmlns:filterbar="sap.ui.comp.filterbar"
+    xmlns:l="sap.ui.layout"  >
+
+    <ScrollContainer
+                        id="root6"
+                        horizontal="false"
+                        vertical="true"
+                        height="100%"
+                    >
+                        <form:SimpleForm id="conAmdSimpleForm">
+                            <!-- Main HBox to hold Left and Right sections -->
+                            <HBox
+                                id="conAmdHboxCustomerDetails"
+                                width="100%"
+                                justifyContent="SpaceBetween"
+                            >
+                                <VBox id="conAmdVboxCustomerDetails">
+                                    <Title
+                                        id="conAmdTitleCustomerDetails"
+                                        text="Customer Details"
+                                        class="sapUiMediumMarginBegin sapUiSmallMarginTopBottom"
+                                    />
+
+                                    <!-- HBox for Customer Name and Customer No -->
+                                    <HBox
+                                        id="conAmdHBoxCustomerInfo"
+                                        width="100%"
+                                        class="sapUiSmallMarginBegin"
+                                    >
+                                        <VBox id="conAmdVBoxCustomerNo" width="45%">
+                                            <Label
+                                                id="conAmdLabelCustomerNo"
+                                                text="Customer No"
+                                                textDirection="LTR"
+                                                required="true"
+                                                class="sapUiMediumMarginBegin sapUiSmallMarginEnd"
+                                            />
+                                            <Input
+                                                id="conAmdInputCustomerNo"
+                                                width="100%"
+                                                editable="false"
+                                                class="sapUiMediumMarginBegin sapUiSmallMarginBottom sapUiSmallMarginEnd"
+                                                value="1100000003"
+                                            />
+                                        </VBox>
+                                        <VBox id="conAmdVBoxCustomerName" width="45%">
+                                            <Label
+                                                id="conAmdLabelCustomerName"
+                                                text="Customer Name"
+                                                textDirection="LTR"
+                                                required="true"
+                                                class="sapUiLargeMarginBegin"
+                                            />
+                                            <Input
+                                                id="conAmdInputCustomerName"
+                                                width="100%"
+                                                editable="false"
+                                                class="sapUiLargeMarginBegin sapUiSmallMarginBottom"
+                                                value="MRCF INDUSTRIES"
+                                            />
+                                        </VBox>
+                                    </HBox>
+                                </VBox>
+                            </HBox>
+                        </form:SimpleForm>
+
+                        <HBox
+                            id="conAmdHboxDropdown1"
+                            width="100%"
+                            justifyContent="SpaceBetween"
+                            class="sapUiTinyMargin"
+                        >
+                            <!-- First Dropdown -->
+                            <VBox id="conAmdVboxdDropdown1" width="45%">
+                                <Label
+                                    id="conAmdLabelSelectContractNo"
+                                    text="Select Contract Number:"
+                                    class="sapUiLargeMarginBegin"
+                                />
+                                <!-- <Select
+                                    id="conAmdSelectContractType"
+                                    width="50%"
+                                    change="onSelectDropdown1"
+                                    class="sapUiSmallMarginBegin"
+                                >
+                                    <core:Item
+                                        id="conAmdItemNewContract"
+                                        key="newContract"
+                                        text="New Contract"
+                                    />
+                                    <core:Item
+                                        id="conAmdExistingContract"
+                                        key="existingContract"
+                                        text="Existing Contract"
+                                    />
+                                </Select> -->
+                                <Input
+                                            id="conAmdSelectContractNo"
+                                            class="sapUiLargeMarginBegin"
+                                            width="200px"
+                                            showValueHelp="true"
+                                            valueHelpOnly="true"
+                                            valueHelpRequest="onContractValueHelp"
+                                        />
+                            </VBox>
+
+                            <!-- Second Dropdown -->
+                            <VBox id="conAmdVboxContractType" width="45%">
+                                <Label
+                                    id="conAmdLabelContractType"
+                                    text="Contract Type:"
+                                    class="sapUiTinyMarginBegin"
+                                />
+                                <Input
+                                    id="conAmdSelectContractType2"
+                                    width="200px"
+                                    change="onSelectDropdown2"
+                                    class="sapUiTinyMarginBegin"
+                                    editable="false"
+                               />
+                            </VBox>
+                            <!-- <VBox
+                                id="conAmdVBoxContractNumber"
+                                width="45%"
+                                visible="false"
+                            >
+                                <Label id="conAmdLabelContractNumber" text="Contract Number:" />
+                                <Input
+                                    id="conAmdInputContractNumber"
+                                    width="50%"
+                                    editable="false"
+                                />
+                            </VBox> -->
+                        </HBox>
+
+
+                       <form:SimpleForm
+                            id="conAmdFormOption1"
+                            visible="true"
+                        >
+                            <!-- Customer Details Title -->
+                            <VBox id="conAmdVbox2" width="100%">
+                                <!-- Contract Type Label and Select -->
+                                <HBox id="conAmdHbox3" class="sapUiLargeMarginBegin">
+                                    <VBox
+                                        id="conAmdVbox3"
+                                        width="45%"
+                                        class="csscustomerportal"
+                                    >
+                                        <Label
+                                            id="conAmdLabelSoldToParty"
+                                            text="Sold To Party"
+                                            required="true"
+                                            textDirection="LTR"
+                                        />
+                                        <Input
+                                            id="conAmdSoldTP_id"
+                                            width="200px"
+                                            showValueHelp="true"
+                                            valueHelpOnly="true"
+                                            valueHelpRequest="onSoldToParty"
+                                        />
+                                        <Label
+                                            id="conAmdLabelSalesOrg"
+                                            text="Sales Organization"
+                                            required="true"
+                                            textDirection="LTR"
+                                        />
+                                        <Select
+                                            id="conAmdSalesORgSelect"
+                                            width="200px"
+                                            change=".onContractTypeChange"
+                                            forceSelection="false"
+                                        >
+                                            <items>
+                                                <core:Item
+                                                    id="conAmdItemSalesOrg"
+                                                    key=""
+                                                    text=""
+                                                />
+                                            </items>
+                                        </Select>
+
+                                        <Label
+                                            id="conAmdLabelDistributionChannel"
+                                            text="Distribution Channel"
+                                            required="true"
+                                            textDirection="LTR"
+                                        />
+                                        <Input
+                                            id="conAmdInputDistributionChannel"
+                                            width="200px"
+                                            editable="false"
+                                        />
+                                        <Label
+                                            id="conAmdLabelValidFrom"
+                                            text="Valid From"
+                                            required="true"
+                                            textDirection="LTR"
+                                        />
+                                        <DatePicker id="conAmdDatepickerValidFrom" width="200px" />
+                                    </VBox>
+
+                                    <VBox id="conAmdVbox4" width="45%">
+                                        <Label
+                                            id="conAmdLabelShipToParty"
+                                            text="Ship To Party"
+                                            required="true"
+                                            textDirection="LTR"
+                                        />
+                                        <Input
+                                            id="conAmdShipTP_id"
+                                            width="200px"
+                                            showValueHelp="true"
+                                            valueHelpOnly="true"
+                                            valueHelpRequest="onShipToParty"
+                                        />
+                                        <Label
+                                            id="conAmdLabelContractDesc"
+                                            text="Contract Description"
+                                            required="true"
+                                            textDirection="LTR"
+                                        />
+                                        <Input
+                                            width="200px"
+                                            id="conAmdContractDescForm1"
+                                        />
+                                        <Label
+                                            id="conAmdLabelDivision"
+                                            text="Division"
+                                            required="true"
+                                            textDirection="LTR"
+                                        />
+                                        <Input
+                                            id="conAmdInputDivision"
+                                            width="200px"
+                                            editable="false"
+                                        />
+                                        <Label
+                                            id="conAmdLabelValidTo"
+                                            text="Valid To"
+                                            required="true"
+                                            textDirection="LTR"
+                                        />
+                                        <DatePicker id="conAmdDatepickerValidTo" width="200px" />
+                                    </VBox>
+                                </HBox>
+                            </VBox>
+                        </form:SimpleForm>
+
+
+                        <!--Capacity Details -->
+
+                        <HBox
+                            id="conAmdhboxCapacityDetails"
+                            width="100%"
+                            justifyContent="SpaceBetween"
+                        >
+                            <VBox id="conAmdvboxCapacityDetails" width="45%">
+                                <Title
+                                    id="conAmdTitleCapacityDetails"
+                                    text="Capacity Details"
+                                    textAlign="Center"
+                                    class="sapUiMediumMarginBegin sapUiSmallMarginTopBottom"
+                                />
+                            </VBox>
+                        </HBox>
+                        <!--this is the capacity form-->
+                        <form:SimpleForm
+                            id="conAmdFormOption5"
+                            visible="true"
+                        >
+                            <!-- Customer Details Title -->
+                            <VBox id="conAmdVboxMaterilalBox" width="100%">
+                                <!-- Contract Type Label and Select -->
+                                <HBox id="conAmdHboxMaterialBox" class="sapUiLargeMarginBegin">
+                                    <VBox
+                                        id="conAmdVbox5"
+                                        width="45%"
+                                        class="csscustomerportal"
+                                    >
+                                        <Label
+                                            id="conAmdLabelMaterial"
+                                            text="Material"
+                                            required="true"
+                                            textDirection="LTR"
+                                        />
+                                        <HBox id="conAmdMaterialBox">
+                                            <Input
+                                                id="conAmdMaterialID67"
+                                                width="200px"
+                                                showValueHelp="true"
+                                                valueHelpOnly="true"
+                                                valueHelpRequest="onMaterial"
+                                                value=""
+                                                required="true"
+                                                change=""
+                                            />
+                                            <Input
+                                                id="conAmdMaterialDesc"
+                                                width="200px"
+                                                value=""
+                                                editable="false"
+                                                visible="false"
+                                                class="sapUiTinyMarginBegin"
+                                            />
+                                        </HBox>
+
+                                        <Label
+                                            id="conAmdLabelUOM"
+                                            text="UOM"
+                                            required="true"
+                                            textDirection="LTR"
+                                        />
+                                        <Input
+                                            id="conAmdCUSPoUOM"
+                                            width="200px"
+                                            showValueHelp="true"
+                                            valueHelpOnly="true"
+                                            valueHelpRequest="onUOM"
+
+                                        />
+                                        <Label
+                                            id="conAmdLabelDPAccDCQ"
+                                            text="DP accumulated DCQ"
+                                            required="true"
+                                            textDirection="LTR"
+                                        />
+                                        <Input
+                                            id="conAmdDPAccDCQ"
+                                            width="200px"
+                                            editable="false"
+                                        />
+                                        <Label
+                                            id="conAmdLabelRDPAccDCQ"
+                                            text="RDP accumulated DCQ"
+                                            required="true"
+                                            textDirection="LTR"
+                                        />
+                                        <Input
+                                            id="conAmdRDPAccDCQ"
+                                            width="200px"
+                                            editable="false"
+                                        />
+                                        <Label
+                                            id="conAmdLabelFuelConsumption"
+                                            text="Fuel Consumption"
+                                            required="true"
+                                            labelFor="conAmdFuelConsumptionGroup"
+                                        />
+                                        <RadioButtonGroup
+                                            id="conAmdFuelConsumptionGroup"
+                                            columns="2"
+                                            selectedIndex="-1"
+                                            select="onFuelConsumptionChange"
+                                        >
+                                            <buttons>
+                                                <RadioButton
+                                                    id="conAmdRadioFuelConsumption"
+                                                    text="Yes"
+                                                    key="yes"
+                                                />
+                                                <RadioButton
+                                                    id="conAmdRadioFuelConsumption2"
+                                                    text="No"
+                                                    key="no"
+                                                />
+                                            </buttons>
+                                        </RadioButtonGroup>
+                                    </VBox>
+
+                                    <VBox id="conAmdVboxMaterialBox2" width="45%">
+                                        <Label
+                                            id="conAmdLabelPlant"
+                                            text="Plant"
+                                            required="true"
+                                            textDirection="LTR"
+                                            class="sapUiTinyMarginBegin"
+                                        />
+                                        <HBox id="conAmdCUSPoPlant">
+                                            <Input
+                                                id="conAmdCUSPoPlantID"
+                                                width="200px"
+                                                showValueHelp="true"
+                                                valueHelpOnly="true"
+                                                valueHelpRequest="onPlant"
+                                                value=""
+                                                required="true"
+                                                change=""
+                                                class="sapUiTinyMarginBegin"
+                                            />
+                                            <Input
+                                                id="conAmdPlantDESC"
+                                                width="200px"
+                                                editable="false"
+                                                visible="false"
+                                                class="sapUiTinyMarginBegin"
+                                            />
+                                        </HBox>
+                                        <Label
+                                            id="conAmdLabelServiceProfile"
+                                            text="Service Profile"
+                                            required="true"
+                                            textDirection="LTR"
+                                            class="sapUiTinyMarginBegin"
+                                        />
+                                        <HBox id="conAmdServiceProfileID">
+                                            <Select
+                                                id="conAmdServiceProfileid"
+                                                width="200px"
+                                                class="sapUiTinyMarginBegin"
+                                            />
+                                            <Input
+                                                id="conAmdServiceProfileDesc"
+                                                width="200px"
+                                                editable="false"
+                                                visible="false"
+                                                class="sapUiTinyMarginBegin"
+                                            />
+                                        </HBox>
+                                        <Label
+                                            id="conAmdLabelDPTargetQuantity"
+                                            text="DP Target Quantity"
+                                            required="true"
+                                            textDirection="LTR"
+                                            class="sapUiTinyMarginBegin"
+                                        />
+                                        <Input
+                                            id="conAmdDPTargetQuantity"
+                                            width="200px"
+                                            editable="false"
+                                            class="sapUiTinyMarginBegin"
+                                        />
+                                        <Label
+                                            id="conAmdLabelRDPTargetQuantity"
+                                            text="RDP Target Quantity"
+                                            required="true"
+                                            textDirection="LTR"
+                                            class="sapUiTinyMarginBegin"
+                                        />
+                                        <Input
+                                            id="conAmdRDPTargetQuantity"
+                                            width="200px"
+                                            editable="false"
+                                            class="sapUiTinyMarginBegin"
+                                        />
+                                        <Label
+                                            id="conAmdLabelFuelLocation"
+                                            text="Fuel Location"
+                                            textDirection="LTR"
+                                            class="sapUiTinyMarginBegin"
+                                            visible="{= ${/fuelConsumptionEnabled} === true }"
+                                        />
+                                        <Input
+                                            id="conAmdFuelLocation"
+                                            width="200px"
+                                            class="sapUiTinyMarginBegin"
+                                            showValueHelp="true"
+                                            valueHelpOnly="true"
+                                            valueHelpRequest=""
+                                            value=""
+                                            visible="{= ${/fuelConsumptionEnabled} === true }"
+                                        />
+                                    </VBox>
+                                </HBox>
+                            </VBox>
+                        </form:SimpleForm>
+
+
+                        <!-- add redelivery -->
+
+                            <Table
+                                id="conAmdRDPTable"
+                                class="tableBorder sapUiTinyMargin"
+                            >
+                                <columns>
+                                    <Column id="conAmdColDeliveryPoint">
+                                        <Label
+                                            id="conAmdLabelDeliveryPoint"
+                                            text="Delivery Point"
+                                            required="true"
+                                        />
+                                    </Column>
+                                    <Column id="conAmdColdpDESC" visible="false">
+                                        <Label
+                                            id="conAmdLabelDPDescription"
+                                            text="DP Description"
+                                            required="true"
+                                        />
+                                    </Column>
+                                    <Column id="conAmdColDPDCQ">
+                                        <Label
+                                            id="conAmdLabelDPDCQ"
+                                            text="DP DCQ"
+                                            required="true"
+                                        />
+                                    </Column>
+                                    <Column id="conAmdColRedeliveryPoint">
+                                        <Label
+                                            id="conAmdLabelRedeliveryPoint"
+                                            text="Redelivery Point"
+                                            required="true"
+                                        />
+                                    </Column>
+                                    <Column id="conAmdColrdpDESC" visible="false">
+                                        <Label
+                                            id="conAmdRdpdescLabel"
+                                            text="RDP Description"
+                                            required="true"
+                                        />
+                                    </Column>
+                                    <Column id="conAmdColRDPDCQ">
+                                        <Label
+                                            id="conAmdLabelRDPDCQ"
+                                            text="RDP DCQ"
+                                            required="true"
+                                        />
+                                    </Column>
+                                    <Column id="conAmdColValidFrom">
+                                        <Label
+                                            id="conAmdLabelValidFromMB"
+                                            text="Valid From"
+                                            required="true"
+                                        />
+                                    </Column>
+                                    <Column id="conAmdColValidTo">
+                                        <Label
+                                            id="conAmdLabelValidToMB"
+                                            text="Valid To"
+                                            required="true"
+                                        />
+                                    </Column>
+                                    <Column id="conAmdColPath">
+                                        <Label
+                                            id="conAmdLabelPath"
+                                            text="Path"
+                                        />
+                                    </Column>
+                                    <!-- Fuel Percentage -->
+                                    <Column id="conAmdFuelPercentageColumn">
+                                        <Label
+                                            id="conAmdLabelFuelPercentage"
+                                            text="Fuel Percentage"
+                                        />
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem id="conAmdColumnListItemMB" >
+                                        <cells>
+                                            <!--Delivery Point-->
+                                            <Input
+                                                id="conAmdDelivery_id"
+                                                width="100px"
+                                                showValueHelp="true"
+                                                valueHelpRequest="onDelivery"
+                                                change="CUSPoservCatDetail"
+                                            />
+                                            <!--DP Description-->
+                                            <Input
+                                                id="conAmdDPDescInput"
+                                                visible="false"
+                                                width="100px"
+                                                value=""
+                                                editable="false"
+                                            />
+                                            <!--DP DCQ-->
+                                            <Input
+                                                id="conAmdDPDCQInput"
+                                                width="100px"
+                                                value=""
+                                                editable="true"
+                                            />
+                                            <!-- Redelivery Point -->
+                                            <Input
+                                                id="conAmdRedelivery_id"
+                                                width="100px"
+                                                showValueHelp="true"
+                                                valueHelpRequest="onReDelivery"
+                                                valueHelpOnly="true"
+                                                change="CUSPoservCatDetail2"
+                                            />
+                                            <!--RDP Description-->
+                                            <Input
+                                                id="conAmdRdpdescInput"
+                                                visible="false"
+                                                width="100px"
+                                                value=""
+                                                editable="false"
+                                            />
+                                            <!--RDP DCQ-->
+                                            <Input
+                                                id="conAmdRDPDCQInput"
+                                                width="100px"
+                                                value=""
+                                                editable="true"
+                                            />
+                                            <!-- Valid From DatePicker -->
+                                            <DatePicker
+                                                id="conAmdValidFromDatePicker"
+                                                width="100px"
+                                                placeholder="Select Date"
+                                            />
+                                            <!-- Valid To DatePicker -->
+                                            <DatePicker
+                                                id="conAmdValidToDatePicker"
+                                                width="100px"
+                                                placeholder="Select Date"
+                                            />
+                                            <!--Path-->
+                                            <Input
+                                                id="conAmdPathInput"
+                                                width="100px"
+                                                value=""
+                                                editable="false"
+                                            />
+                                            <!-- Fuel Percentage -->
+                                            <Input
+                                                id="conAmdFuelPercentageInput"
+                                                width="100px"
+                                                value=""
+                                                editable="false"
+                                            />
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+
+
+                        <!-- clause information  -->
+
+                        <!-- Main HBox to hold Left and Right sections -->
+                       <Table items="{valueParameterModel>/}" mode="None" id="conAmdValueParameterTable" class="tableBorder sapUiTinyMargin">
+                        <columns>
+                            <Column id="conAmdColValueParameter" width="10rem">
+                                <header>
+                                    <Label id="conAmdTitleValueParameter" text="Value Parameter" />
+                                </header>
+                            </Column>
+                            <Column id="conAmdColValue" width="10rem">
+                                <header>
+                                    <Label id="conAmdTitleValue" text="Value" required="true"/>
+                                </header>
+                            </Column>
+                            <Column id="conAmdColTitle" width="40rem">
+                                <header>
+                                    <Title id="conAmdTitle" />
+                                </header>
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem id="conAmdColumnListItem10">
+                                <cells>
+                                    <Text id="conAmdServiceParameterText" text="{valueParameterModel>serviceParameter}" />
+                                    <Input id="conAmdInputValue" width="100px" value="{valueParameterModel>value}" change="targetQuantityCal" required="true"/>
+                                    <Label id="conAmdUomUnitDerived" text="" />
+                                    <Text id="conAmdServiceParameterIDText" text="{valueParameterModel>ID}" visible="false" />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+
+                            <!-- Left Section -->
+                            <HBox
+                            id="conAmdHboxClauseInformation"
+                            width="100%"
+                            justifyContent="SpaceBetween"
+                        >
+
+                            <VBox id="conAmdVboxClauseInformation" width="45%">
+                                <Title
+                                    id="conAmdTitleClauseInformation"
+                                    text="Clause Information"
+                                    textAlign="Center"
+                                    class="sapUiMediumMarginBegin sapUiSmallMarginTopBottom"
+                                />
+                            </VBox>
+
+                            <Button
+                                id="conAmdButtonAddClause"
+                                text="Add Clause"
+                                press="onClausePress"
+                                class="sapUiTinyMargin"
+                                type="Emphasized"
+                            />
+                        </HBox>
+                        <VBox id="conAmdVboxClauseCode">
+                            <Table
+                                id="conAmdClCodeTable"
+                                class="tableBorder sapUiTinyMargin"
+                            >
+                                <columns>
+                                    <Column id="conAmdClCodeTableColClauseCode">
+                                        <Label
+                                            id="conAmdClCodeLabelClauseCode"
+                                            text="Clause Code"
+                                            required="true"
+                                        />
+                                    </Column>
+                                    <Column id="conAmdClCodeTableColValidFrom">
+                                        <Label
+                                            id="conAmdClCodeLabelValidFrom"
+                                            text="Valid From"
+                                            required="true"
+                                        />
+                                    </Column>
+                                    <Column id="conAmdClCodeTableColValidTo">
+                                        <Label
+                                            id="conAmdClCodeLabelValidTo"
+                                            text="Valid To"
+                                            required="true"
+                                        />
+                                    </Column>
+                                    <Column id="conAmdClCodeTableColThreshold">
+                                        <Label
+                                            id="conAmdClCodeLabelThreshold"
+                                            text="Threshold%"
+                                            required="true"
+                                        />
+                                    </Column>
+                                    <Column id="conAmdClCodeTableColThresholdReference">
+                                        <Label
+                                            id="conAmdClCodeLabelThresholdReference"
+                                            text="Threshold Reference"
+                                            required="true"
+                                        />
+                                    </Column>
+                                    <Column id="conAmdClCodeTableColRemark">
+                                        <Label
+                                            id="conAmdClCodeLabelRemark"
+                                            text="Remark"
+                                        />
+                                    </Column>
+                                    <Column id="conAmdClCodeTableColAction" width="4rem">
+                                        <Text
+                                            id="conAmdClCodeLabelAction"
+                                            text="Action"
+                                        />
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem id="conAmdClCodeTableItem">
+                                        <cells>
+                                            <Select
+                                                id="conAmdClCodeSelect1"
+                                                forceSelection="false"
+                                                width="150px"
+                                            >
+                                                <core:Item id="conAmdItemMaxDCQ" text="Max DCQ" />
+                                                <core:Item id="conAmdItemMinDCQ" text="Min DCQ" />
+                                            </Select>
+                                            <DatePicker
+                                                id="conAmdClCodeDatePickerFrom"
+                                                width="100px"
+                                                value=""
+                                                required="true"
+                                            />
+                                            <DatePicker
+                                                id="conAmdClCodeDatePickerTo"
+                                                width="100px"
+                                                value=""
+                                                required="true"
+                                            />
+                                            <Input
+                                                id="conAmdClCodeInputThreshold"
+                                                width="100px"
+                                                value=""
+                                            />
+                                            <Select
+                                                id="conAmdClCodeSelect2"
+                                                width="100px"
+                                                forceSelection="false"
+                                            >
+                                                <core:Item
+                                                    id="conAmdItemDCQ"
+                                                    key="DCQ"
+                                                    text="DCQ"
+                                                />
+                                                <core:Item
+                                                    id="conAmdItemMaxDCQ2"
+                                                    key="Max DCQ"
+                                                    text="Max DCQ"
+                                                />
+                                                <core:Item
+                                                    id="conAmdItemMinDCQ2"
+                                                    key="Min DCQ"
+                                                    text="Min DCQ"
+                                                />
+                                            </Select>
+                                            <Input
+                                                id="conAmdClCodeInputThresholdReference"
+                                                width="100px"
+                                                value=""
+                                                required="true"
+                                            />
+                                            <Button
+                                                id="conAmdClCodeActionBtn"
+                                                icon="sap-icon://delete"
+                                                press="onDeletePress"
+                                            />
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </VBox>
+
+
+                        <!-- ALLOCATION PARAMETER -->
+                        <Table id="allocTable" items="{allocModel>/allocLevel}">
+                                <headerToolbar>
+                                    <Toolbar id="conAmdToolbarAP">
+                                        <Title id="conAmdTitleAP" text="Allocation Parameters"/>
+                                    </Toolbar>
+                                </headerToolbar>
+                                <columns>
+                                    <Column id="conAmdColumnLevel">
+                                        <Text id="conAmdLabelLevel" text="Level"/>
+                                    </Column>
+                                    <Column id="conAmdColumnParameters">
+                                        <Label id="conAmdLabelParameters" text="Parameters" required="true"/>
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem id="conAmdColumnListItemAP">
+                                        <cells>
+                                            <Text id="conAmdTextAP" text="{allocModel>Level}" />
+                                            <Select id="conAmdSelectAP" selectedKey="{allocModel>selectedParam}" width="200px" forceSelection="false" >
+                                            <!-- DYNAMIC ITEMS -->
+                                            </Select>
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+
+                        <Table
+                            id="dynamicTable"
+                            mode="MultiSelect"
+                            items="{path: 'parameterModel>/dynamicRows'}"
+                            visible="false"
+                            selectionChange=".onSelectionChange"
+                        >
+                            <columns>
+                                <Column id="conAmdColumnServieParameter">
+                                    <Text id="conAmdTextServiceParameter" text="Service Parameter" />
+                                </Column>
+                                <Column id="conAmdColumnInputValue">
+                                    <Text id="conAmdTextInputValue" text="Input Value" />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem id="conAmdColumnListItemSP">
+                                    <cells>
+                                        <Text
+                                            id="conAmdTextSP"
+                                            text="{parameterModel>serviceParameter}"
+                                        />
+                                        <Input
+                                            id="conAmdInputSP"
+                                            visible="{parameterModel>showInput}"
+                                            placeholder="Enter value"
+                                            width="300px"
+                                        />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </ScrollContainer>
+    
+
+</mvc:View>

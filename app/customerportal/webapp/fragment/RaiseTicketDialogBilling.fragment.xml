@@ -1,0 +1,28 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Dialog
+        id="raiseTicketDialog2"
+        title="Support for Billing"
+        afterClose="onDialogCloseTicketBilling"
+        draggable="true"
+        resizable="true"
+        contentWidth="40%"
+        state="Information"
+        
+         class="sapUiContentPadding">
+        <VBox>
+            <Text id="ticketText2" text="Raising Ticket for Billing No." textAlign="Center" />
+            <TextArea id="ticketTextArea2" width="100%" placeholder="Enter your issue here..." rows="6" />
+        </VBox>
+        <beginButton>
+            <Button
+                text="Submit"
+                press="onSubmitTicketBilling" 
+                type="Emphasized"
+                
+                />
+        </beginButton>
+         <endButton>
+            <Button text="Cancel" type="Default" press="_handleTicketDialogClose" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

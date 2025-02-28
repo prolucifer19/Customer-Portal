@@ -1,0 +1,18 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+
+    <SelectDialog
+        id="UOMID"
+        noDataText="Loading..."
+        title="Select UOM"
+        liveChange="onSearchUOM"
+        confirm="onConfirmUOM"
+        cancel="onCloseUOM"
+        items="{/xGMSxUOM_value}">
+        <StandardListItem 
+            title="{Msehi}"
+            description="{Msehl}"
+            type="Active" />
+    </SelectDialog>
+</core:FragmentDefinition>

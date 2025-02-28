@@ -1,0 +1,23 @@
+<mvc:View controllerName="customerportal.controller.penaltyReport"
+    xmlns:form="sap.ui.layout.form"
+    height="100%"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:u="sap.ui.unified"
+    xmlns:tnt="sap.tnt"
+    xmlns:filterbar="sap.ui.comp.filterbar"
+    xmlns:l="sap.ui.layout"         >
+    
+                        <ScrollContainer
+                        id="root4"
+                        horizontal="false"
+                        vertical="true"
+                        height="100%"
+                        >
+                        <Text id="penRTextBox" text="This is the Penality page" />
+                    </ScrollContainer>
+
+    
+</mvc:View>
