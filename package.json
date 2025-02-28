@@ -182,6 +182,24 @@
         },
         "csrf": true,
         "csrfInBatch": true
+      },
+      "GMSMATERIAL_DATA_CDS": {
+        "kind": "odata-v2",
+        "model": "srv/external/GMSMATERIAL_DATA_CDS",
+        "[production]": {
+          "credentials": {
+            "destination": "Ingenx_OData_SAP",
+            "path": "/sap/opu/odata/gms/MATERIAL_DATA_CDS"
+          }
+        },
+        "[development]": {
+          "credentials": {
+            "destination": "SandboxPO",
+            "path": "/sap/opu/odata/gms/MATERIAL_DATA_CDS"
+          }
+        },
+        "csrf": true,
+        "csrfInBatch": true
       }
     }
   }

@@ -88,13 +88,72 @@
                             justifyContent="SpaceBetween"
                         >
                             <VBox id="conReqvboxCapacityDetails" width="45%">
+                            <HBox>
                                 <Title
                                     id="conReqTitleCapacityDetails"
                                     text="Capacity Details"
                                     textAlign="Center"
                                     class="sapUiMediumMarginBegin sapUiSmallMarginTopBottom"
                                 />
+                                <Select
+                                id="materialSelect"
+                                width="70px"
+                                class="sapUiMediumMarginBegin sapUiSmallMarginTop"
+                                selectedKey="{headerModel>/selectedItem}"
+                                change="onChange"
+                                items="{headerModel>/items}"
+                            >
+                                <core:Item
+                                    key="{headerModel>Item}"
+                                    text="{headerModel>Item}"
+                                />
+                            </Select>
+                            </HBox>
                             </VBox>
+                            <HBox>
+                                <VBox id="conReqAddButton" width="45%">
+                                <Button
+                                id="conReqaddButton"
+                                text="Add Material"
+                                width="100px"
+                                press="onAddMaterial"
+                                type="Emphasized"
+                                class="sapUiTinyMarginTop"
+                                />
+                                </VBox>
+                                <VBox id="conReqDelButton" width="45%">
+                                <Button
+                                id="discardMaterial"
+                                text="Delete Material"
+                                width="100px"
+                                press="onDeleteMaterial"
+                                visible="false"
+                                type="Emphasized"
+                                class="sapUiSmallMarginBegin sapUiTinyMarginTop"
+                                />  
+                            </VBox>
+                            <VBox id="conReqAddRdpVbox" width="45%">
+                                <Button
+                                id="conReqAddRdp"
+                                text="Add Redelivery"
+                                width="100px"
+                                press=""
+                                type="Emphasized"
+                                class="sapUiTinyMarginBegin sapUiTinyMarginTop"
+                                />
+                                </VBox>
+                                <VBox id="conReqAddDelRed" width="45%">
+                                <Button
+                                id="conReqADDDelRed"
+                                text="Add Delivery/Redelivery"
+                                width="100px"
+                                press="onDeleteMaterial"
+                                visible="false"
+                                type="Emphasized"
+                                class="sapUiTinyMarginBegin sapUiTinyMarginTop"
+                                />  
+                            </VBox>
+                            </HBox>
                         </HBox>
                         <!--this is the capacity form-->
                         <form:SimpleForm
@@ -692,8 +751,22 @@
                                 </ColumnListItem>
                             </items>
                         </Table>
-
-
+                        <HBox id="conReqButtonHbox">
+                            <Button
+                                id="conReqButtonSendApp"
+                                text="Send for Approval"
+                                press=""
+                                class="sapUiTinyMargin"
+                                type="Emphasized"
+                            />
+                            <Button
+                                id="conReqButtonSaveDraft"
+                                text="Save to Draft"
+                                press=""
+                                class="sapUiTinyMargin"
+                                type="Emphasized"
+                            />
+                        </HBox>
                     </ScrollContainer>
                     
 

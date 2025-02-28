@@ -247,6 +247,13 @@
                                             textDirection="LTR"
                                         />
                                         <DatePicker id="conAmdDatepickerValidFrom" width="200px" />
+                                        <Label
+                                            id="conAmdLabelValidTo"
+                                            text="Valid To"
+                                            required="true"
+                                            textDirection="LTR"
+                                        />
+                                        <DatePicker id="conAmdDatepickerValidTo" width="200px" />
                                     </VBox>
 
                                     <VBox id="conAmdVbox4" width="45%">
@@ -308,13 +315,6 @@
                                                 class="sapUiTinyMarginBegin"
                                             />
                                         </HBox>
-                                        <Label
-                                            id="conAmdLabelValidTo"
-                                            text="Valid To"
-                                            required="true"
-                                            textDirection="LTR"
-                                        />
-                                        <DatePicker id="conAmdDatepickerValidTo" width="200px" />
                                     </VBox>
                                 </HBox>
                             </VBox>

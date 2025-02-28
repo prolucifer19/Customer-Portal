@@ -10,15 +10,15 @@
                 <Key>
                     <PropertyRef Name="Refno"/>
                 </Key>
-                <Property Name="Refno" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Referance No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Refno" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Referance No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="Vbeln" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="DocumentNo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="Item" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Item" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="Material" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="DeliveryPoint" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Delivery Point" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="RedeliveryPoint" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Redelivery Point" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="ValidFrom" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Valid From" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="ValidTo" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Valid To" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ValidFrom" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Valid From" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ValidTo" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Valid To" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="Profile" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Service Profile" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="DeliveryDcq" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Delivery DCQ" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="RedeliveryDcq" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="ReDelivery DCQ" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
@@ -27,18 +27,18 @@
                 <Property Name="FuelLocation" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Fuel Location" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="Contracttype" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Document Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Createdby" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Created By" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Createddate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Created Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Createdtime" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="Created Time" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Changedby" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Changed By" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Changeddate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Change Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Changedtime" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="Change Time" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Createdby" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:label="Created By" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Createddate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Created Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Createdtime" Type="Edm.Time" Precision="0" sap:unicode="false" sap:label="Created Time" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Changedby" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:label="Changed By" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Changeddate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Change Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Changedtime" Type="Edm.Time" Precision="0" sap:unicode="false" sap:label="Change Time" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
             </EntityType>
             <EntityType Name="SPServpro" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="Refno"/>
                 </Key>
-                <Property Name="Refno" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Referance No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Refno" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Referance No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="Vbeln" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="DocumentNo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="ItemNo" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Item" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="ServiceParam" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Service Parameter" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
@@ -56,7 +56,7 @@
                 <Key>
                     <PropertyRef Name="Refno"/>
                 </Key>
-                <Property Name="Refno" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Referance No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Refno" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Referance No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="Vbeln" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="DocumentNo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="ItemNo" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Item" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="ClauseCode" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Service Parameter" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
@@ -77,7 +77,7 @@
                 <Key>
                     <PropertyRef Name="Refno"/>
                 </Key>
-                <Property Name="Refno" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Referance No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Refno" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Referance No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="Vbeln" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="DocumentNo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="ItemNo" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Item" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="ContractField" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Contract Field" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
@@ -95,7 +95,7 @@
                 <Key>
                     <PropertyRef Name="Refno"/>
                 </Key>
-                <Property Name="Refno" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Referance No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Refno" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Referance No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <NavigationProperty Name="toHeaderTable" Relationship="GMS.CONTAPPROVAL_SRV.toHeaderTable" FromRole="FromRole_toHeaderTable" ToRole="ToRole_toHeaderTable"/>
                 <NavigationProperty Name="toservpara" Relationship="GMS.CONTAPPROVAL_SRV.toservpara" FromRole="FromRole_toservpara" ToRole="ToRole_toservpara"/>
                 <NavigationProperty Name="toClausecode" Relationship="GMS.CONTAPPROVAL_SRV.toClausecode" FromRole="FromRole_toClausecode" ToRole="ToRole_toClausecode"/>

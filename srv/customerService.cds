@@ -7,6 +7,7 @@ using GMSTICKET_API_SRV from './external/GMSTICKET_API_SRV.cds';
 using GMSCONTRACTS_SRV from './external/GMSCONTRACTS_SRV.cds';
 using GMSCONTAPPROVAL_SRV from './external/GMSCONTAPPROVAL_SRV.cds';
 using ZGMSDOCFLOW7_CDS from './external/ZGMSDOCFLOW7_CDS.cds';
+using GMSMATERIAL_DATA_CDS from './external/GMSMATERIAL_DATA_CDS.cds';
 
 
 service customerportalservice {
@@ -14,6 +15,11 @@ service customerportalservice {
     function getContractDetailsAndPastNom(Vbeln : String)                  returns array of String;
     function getNominationDetailsByGasDay(Gasday : Date, Vbeln : String)   returns array of String;
     function getNominationDetails(Gasday : Date, Vbeln : String)           returns array of String;
+
+    function FetchPlantsByMaterial(Material : String)                      returns array of {
+        Plant : String;
+        PlantDesc : String;
+    };
 
     entity xGMSxVendor_Data     as
         projection on GMSVENDOR_DATA_NAV_CDS.xGMSxVendor_Data {
@@ -574,5 +580,97 @@ service customerportalservice {
                 ServProfile,
                 ParamType,
                 ParamValue
+        };
+
+    entity SpHeaderSet          as
+        projection on GMSCONTAPPROVAL_SRV.SpHeaderSet {
+            key Refno,
+                Vbeln,
+                Status,
+                Item,
+                Material,
+                DeliveryPoint,
+                RedeliveryPoint,
+                ValidFrom,
+                ValidTo,
+                Profile,
+                DeliveryDcq,
+                RedeliveryDcq,
+                Path,
+                FuelPercentage,
+                FuelLocation,
+                Contracttype,
+                Type,
+                Createdby,
+                Createddate,
+                Createdtime,
+                Changedby,
+                Changeddate,
+                Changedtime
+        };
+
+    entity SPServproSet         as
+        projection on GMSCONTAPPROVAL_SRV.SPServproSet {
+            key Refno,
+                Vbeln,
+                ItemNo,
+                ServiceParam,
+                ServProfile,
+                ParamType,
+                ParamValue,
+                Createdby,
+                Createddate,
+                Createdtime,
+                Changedby,
+                Changeddate,
+                Changedtime
+        };
+
+
+    entity SPCustomfldSet       as
+        projection on GMSCONTAPPROVAL_SRV.SPCustomfldSet {
+            key Refno,
+                Vbeln,
+                ItemNo,
+                ContractField,
+                Fieldlevel,
+                FieldValue,
+                DocType,
+                Createdby,
+                Createddate,
+                Createdtime,
+                Changedby,
+                Changeddate,
+                Changedtime
+        };
+
+
+    entity SPClauseCodeSet      as
+        projection on GMSCONTAPPROVAL_SRV.SPClauseCodeSet {
+            key Refno,
+                Vbeln,
+                ItemNo,
+                ClauseCode,
+                ValidFrom,
+                ValidTo,
+                ThresholdP,
+                ThreshRef,
+                Remark,
+                CalculatedValue,
+                Createdby,
+                Createddate,
+                Createdtime,
+                Changedby,
+                Changeddate,
+                Changedtime
+        };
+
+    entity xGMSxMaterial_Data   as
+        projection on GMSMATERIAL_DATA_CDS.xGMSxMaterial_Data {
+            key Material,
+            key Plant,
+            key UOM,
+                Des as Description,
+                PlantDesc
         };
 }

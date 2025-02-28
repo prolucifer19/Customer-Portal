@@ -1,4 +1,4 @@
-/* checksum : 7abfa8a1489b5480228a4890cd14687e */
+/* checksum : 01c82b3e9ae4a18b120315bc7633976f */
 @cds.external : true
 @m.IsDefaultEntityContainer : 'true'
 @sap.supported.formats : 'atom json xlsx'
@@ -18,7 +18,7 @@ entity GMSCONTAPPROVAL_SRV.SpHeaderSet {
   @sap.updatable : 'false'
   @sap.sortable : 'false'
   @sap.filterable : 'false'
-  key Refno : String(5) not null;
+  key Refno : String(10) not null;
   @sap.unicode : 'false'
   @sap.label : 'DocumentNo'
   @sap.creatable : 'false'
@@ -69,7 +69,7 @@ entity GMSCONTAPPROVAL_SRV.SpHeaderSet {
   @sap.updatable : 'false'
   @sap.sortable : 'false'
   @sap.filterable : 'false'
-  ValidFrom : Timestamp not null;
+  ValidFrom : Timestamp;
   @odata.Type : 'Edm.DateTime'
   @odata.Precision : 7
   @sap.unicode : 'false'
@@ -78,7 +78,7 @@ entity GMSCONTAPPROVAL_SRV.SpHeaderSet {
   @sap.updatable : 'false'
   @sap.sortable : 'false'
   @sap.filterable : 'false'
-  ValidTo : Timestamp not null;
+  ValidTo : Timestamp;
   @sap.unicode : 'false'
   @sap.label : 'Service Profile'
   @sap.creatable : 'false'
@@ -141,7 +141,7 @@ entity GMSCONTAPPROVAL_SRV.SpHeaderSet {
   @sap.updatable : 'false'
   @sap.sortable : 'false'
   @sap.filterable : 'false'
-  Createdby : String(15) not null;
+  Createdby : String(15);
   @odata.Type : 'Edm.DateTime'
   @odata.Precision : 7
   @sap.unicode : 'false'
@@ -150,21 +150,21 @@ entity GMSCONTAPPROVAL_SRV.SpHeaderSet {
   @sap.updatable : 'false'
   @sap.sortable : 'false'
   @sap.filterable : 'false'
-  Createddate : Timestamp not null;
+  Createddate : Timestamp;
   @sap.unicode : 'false'
   @sap.label : 'Created Time'
   @sap.creatable : 'false'
   @sap.updatable : 'false'
   @sap.sortable : 'false'
   @sap.filterable : 'false'
-  Createdtime : Time not null;
+  Createdtime : Time;
   @sap.unicode : 'false'
   @sap.label : 'Changed By'
   @sap.creatable : 'false'
   @sap.updatable : 'false'
   @sap.sortable : 'false'
   @sap.filterable : 'false'
-  Changedby : String(15) not null;
+  Changedby : String(15);
   @odata.Type : 'Edm.DateTime'
   @odata.Precision : 7
   @sap.unicode : 'false'
@@ -173,14 +173,14 @@ entity GMSCONTAPPROVAL_SRV.SpHeaderSet {
   @sap.updatable : 'false'
   @sap.sortable : 'false'
   @sap.filterable : 'false'
-  Changeddate : Timestamp not null;
+  Changeddate : Timestamp;
   @sap.unicode : 'false'
   @sap.label : 'Change Time'
   @sap.creatable : 'false'
   @sap.updatable : 'false'
   @sap.sortable : 'false'
   @sap.filterable : 'false'
-  Changedtime : Time not null;
+  Changedtime : Time;
 };
 
 @cds.external : true
@@ -197,7 +197,7 @@ entity GMSCONTAPPROVAL_SRV.SPServproSet {
   @sap.updatable : 'false'
   @sap.sortable : 'false'
   @sap.filterable : 'false'
-  key Refno : String(5) not null;
+  key Refno : String(10) not null;
   @sap.unicode : 'false'
   @sap.label : 'DocumentNo'
   @sap.creatable : 'false'
@@ -302,7 +302,7 @@ entity GMSCONTAPPROVAL_SRV.SPClauseCodeSet {
   @sap.updatable : 'false'
   @sap.sortable : 'false'
   @sap.filterable : 'false'
-  key Refno : String(5) not null;
+  key Refno : String(10) not null;
   @sap.unicode : 'false'
   @sap.label : 'DocumentNo'
   @sap.creatable : 'false'
@@ -432,7 +432,7 @@ entity GMSCONTAPPROVAL_SRV.SPCustomfldSet {
   @sap.updatable : 'false'
   @sap.sortable : 'false'
   @sap.filterable : 'false'
-  key Refno : String(5) not null;
+  key Refno : String(10) not null;
   @sap.unicode : 'false'
   @sap.label : 'DocumentNo'
   @sap.creatable : 'false'
@@ -537,7 +537,7 @@ entity GMSCONTAPPROVAL_SRV.CreateSPSet {
   @sap.updatable : 'false'
   @sap.sortable : 'false'
   @sap.filterable : 'false'
-  key Refno : String(5) not null;
+  key Refno : String(10) not null;
   toHeaderTable : Association to many GMSCONTAPPROVAL_SRV.SpHeaderSet {  };
   toservpara : Association to many GMSCONTAPPROVAL_SRV.SPServproSet {  };
   toClausecode : Association to many GMSCONTAPPROVAL_SRV.SPClauseCodeSet {  };
