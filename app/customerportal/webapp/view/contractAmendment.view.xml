@@ -81,10 +81,12 @@
                         >
                             <!-- First Dropdown -->
                             <VBox id="conAmdVboxdDropdown1" width="45%">
+                                
                                 <Label
                                     id="conAmdLabelSelectContractNo"
                                     text="Select Contract Number:"
                                     class="sapUiLargeMarginBegin"
+                                    visible="false"
                                 />
                                 <!-- <Select
                                     id="conAmdSelectContractType"
@@ -110,7 +112,24 @@
                                             showValueHelp="true"
                                             valueHelpOnly="true"
                                             valueHelpRequest="onContractValueHelp"
+                                            visible="false"
                                         />
+
+                                <Label
+                                    id="conAmdLabelSelectRefNo"
+                                    text="Select Reference Number:"
+                                    class="sapUiLargeMarginBegin"
+                                    visible="true"
+                                />
+                                <Input
+                                            id="conAmdSelectRefNo"
+                                            class="sapUiLargeMarginBegin"
+                                            width="200px"
+                                            showValueHelp="true"
+                                            valueHelpOnly="true"
+                                            valueHelpRequest="onContractValueHelp"
+                                            visible="true"
+                                 />
                             </VBox>
 
                             <!-- Second Dropdown -->
