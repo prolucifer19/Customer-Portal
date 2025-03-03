@@ -62,6 +62,7 @@ sap.ui.define([
           if (oRadioGroup) {
             oRadioGroup.setSelectedIndex(-1);
           }
+          var oView = this.getView();
           this.getView().byId("conReqDPAccDCQ").setVisible(false);
           this.getView().byId("conReqLabelDPAccDCQ").setVisible(false);
           this.getView().byId("conReqLabelDPTargetQuantity").setVisible(false);
@@ -70,6 +71,20 @@ sap.ui.define([
           this.getView().byId("conReqFuelConsumptionGroup").setVisible(false);
           var oTable = this.getView().byId("conReqRDPTable");
           var aColumns = oTable.getColumns();
+          var oSelect = oView.byId("conReqSelectContractType2");
+            oSelect.bindItems({
+                path: "/DocumentNoProfileMapping",
+                template: new sap.ui.core.Item({
+                    key: "{DocumentNo}-{industryType}",
+                    text: {
+                        parts: ["DocumentNo", "description","industryType"],
+                        formatter: function (sDocumentNo, sDescription,industryType ) {  
+                            return sDocumentNo + " - " + sDescription +"("+industryType+")";
+                        }
+                    }
+                })
+            });
+            console.log("oSelect");
           aColumns.forEach(function (oColumn) {
             var oHeader = oColumn.getHeader();
             if (oHeader && oHeader.getText) {
@@ -85,10 +100,27 @@ sap.ui.define([
           });
         },
 
+        onSearchMaterial: function (oEvent) {
+          const sValue = oEvent.getParameter("value");
+          const oBinding = oEvent.getSource().getBinding("items");
+          if (oBinding) {
+              const aFilters = [
+                  new sap.ui.model.Filter("Material", sap.ui.model.FilterOperator.Contains, sValue),
+                  new sap.ui.model.Filter("Description", sap.ui.model.FilterOperator.Contains, sValue)
+              ];
+              oBinding.filter(new sap.ui.model.Filter(aFilters, false)); // OR condition
+          }
+      },
+
         onSelectDropdown: async function (oEvent) {
           var sSelectedKey = oEvent.getSource().getSelectedKey();
-          this.updateTableForSelection(sSelectedKey);
-          if (sSelectedKey === "ZGTA") {
+          let [sDocumentType, sIndustryType] = sSelectedKey.split("-");
+ 
+            this.sDocumentType = sDocumentType;
+            this.sIndustryType = sIndustryType;
+           // var bVisibleindustry =  (this.sIndustryType === "CGD" && this.sDocumentType !== "ZGTA" );
+          this.updateTableForSelection(sDocumentType);
+          if (sDocumentType === "ZGTA") {
             console.log("enter the selected key condition");
             // Make specific fields invisible
             this.getView().byId("conReqDPAccDCQ").setVisible(true);
@@ -97,6 +129,8 @@ sap.ui.define([
             this.getView().byId("conReqDPTargetQuantity").setVisible(true);
             this.getView().byId("conReqLabelFuelConsumption").setVisible(true);
             this.getView().byId("conReqFuelConsumptionGroup").setVisible(true);
+            this.getView().byId("conReqLabelFuelLocation").setVisible(true);
+            this.getView().byId("fuelRadio").setVisible(true);
           } else {
             this.getView().byId("conReqDPAccDCQ").setVisible(false);
             this.getView().byId("conReqLabelDPAccDCQ").setVisible(false);
@@ -104,8 +138,10 @@ sap.ui.define([
             this.getView().byId("conReqDPTargetQuantity").setVisible(false);
             this.getView().byId("conReqLabelFuelConsumption").setVisible(false);
             this.getView().byId("conReqFuelConsumptionGroup").setVisible(false);
+            this.getView().byId("conReqLabelFuelLocation").setVisible(false);
+            this.getView().byId("fuelRadio").setVisible(false);
           }
-         // await this.getServiceProfile(this.sDocumentType);
+          await this.getServiceProfile(this.sDocumentType);
         },
         //this function is for the table changes based on the GSA and GTA selection
 
@@ -471,6 +507,7 @@ getServiceProfile: async function (sDocumentType) {
         // Bind the fetched data to the select box model
         var oServiceProfileModel = new sap.ui.model.json.JSONModel({ serviceProfiles: aCustomerData });
         this.getView().setModel(oServiceProfileModel, "serviceProfileModel");
+        console.log("oServiceProfileModel",oServiceProfileModel);
     } catch (error) {
         console.error("Error fetching service profiles:", error);
     }
@@ -503,7 +540,7 @@ getServiceProfile: async function (sDocumentType) {
       var RDPDCQ = oView.byId("conReqRDPDCQInput").getValue();
       var dcqValidFrom = formatDate(oView.byId("conReqValidFromDatePicker").getValue());
       var dcqValidTo = formatDate(oView.byId("conReqValidToDatePicker").getValue());
-    var fuelLocation =  oView.byId("conReqFuelLocation").getSelectedItem()?.getText() || '';
+    var fuelLocation =  oView.byId("fuelRadio").getSelectedItem()?.getText() || '';
      var path = oView.byId("conReqPathInput").getValue();
      var FuelPercent= oView.byId("conReqFuelPercentageInput").getValue();
       // Find the current item in the array and update its values
@@ -558,6 +595,21 @@ getServiceProfile: async function (sDocumentType) {
 
   },
 
+  onSearchDelivery: function (oEvent) {
+    var sValue = oEvent.getParameter("value");
+    var oFilter = new sap.ui.model.Filter("Locid", sap.ui.model.FilterOperator.Contains, sValue);
+
+    var oBinding = oEvent.getSource().getBinding("items");
+    oBinding.filter([oFilter]);
+},
+
+onSearchRDP: function (oEvent) {
+  var sValue = oEvent.getParameter("value");
+  var oFilter = new sap.ui.model.Filter("Locid", sap.ui.model.FilterOperator.Contains, sValue);
+  var oBinding = oEvent.getSource().getBinding("items");
+  oBinding.filter([oFilter]);
+},
+
   onGetProfile: function (oEvent) {
     var oView = this.getView();
     var oHeaderModel = oView.getModel("headerModel");
@@ -607,7 +659,7 @@ getServiceProfile: async function (sDocumentType) {
         // Restore Value Parameters and Allocation Parameters
         oValueParamModel.setData({ valueParams: oSavedData.valueParams });
         oAllocParamModel.setData({ allocParams: oSavedData.allocParams });
-    
+    console.log("ValueParameterModel",oValueParamModel);
         // Preserve clauseCodes and thresholdRefs while restoring rows
         const oDropdownData = oDropdownModel ? oDropdownModel.getData() : {};
         oDropdownModel.setData({
@@ -624,6 +676,133 @@ getServiceProfile: async function (sDocumentType) {
     // Update previous selected item
     oHeaderModel.setProperty("/previousItem", sSelectedItem);
 }, 
+onSearchUOM: function (oEvent) {
+  var sValue = oEvent.getParameter("value");
+  var oFilter = new sap.ui.model.Filter("Msehi", sap.ui.model.FilterOperator.Contains, sValue);
+
+  var oBinding = oEvent.getSource().getBinding("items");
+  oBinding.filter([oFilter]);
+},
+
+onClausePress: function () {
+  const oDropdownModel = this.getView().getModel("DropdownModel");
+  const aRows = oDropdownModel.getProperty("/rows");
+
+  // Add a new empty row
+  aRows.push({
+      clauseCode: "",           // Default empty values
+      validFrom: "",
+      validTo: "",
+      threshold: "",
+      thresholdReference: "",
+      remark: ""
+  });
+
+  // Update the model with the new rows array
+  oDropdownModel.setProperty("/rows", aRows);
+},
+
+onDeletePress: function (oEvent) {
+  const oDropdownModel = this.getView().getModel("DropdownModel");
+  const aRows = oDropdownModel.getProperty("/rows");
+
+  // Get the index of the row to be deleted
+  const oItem = oEvent.getSource().getParent();  // ColumnListItem
+  const iIndex = oItem.getBindingContext("DropdownModel").getPath().split("/").pop();
+
+  // Remove the row from the array
+  aRows.splice(iIndex, 1);
+
+  // Update the model with the new rows array
+  oDropdownModel.setProperty("/rows", aRows);
+},
+
+deriveProDesc: function (oEvent) {
+  var selectedServiceProfile = oEvent.getSource().getSelectedKey();
+  var oModel = this.getView().getModel("serviceProfileModel");
+  console.log("oServiceProfileModel",oModel);
+  var aServiceProfiles = oModel.getProperty("/serviceProfiles");
+  const serviceProfDescHbox = this.byId("serviceProfDesc_HboxID");
+  
+  serviceProfDescHbox.setVisible(true);
+
+  // Find the selected service profile
+  var oSelectedProfile = aServiceProfiles.find(profile => profile.serviceProfileName === selectedServiceProfile);
+  var servProDescInput = this.byId("servProDesc_ID");
+  
+  if (oSelectedProfile) {
+      // Update the selected profile in the model
+      oModel.setProperty("/selectedServiceProfile", oSelectedProfile);
+      servProDescInput.setValue(oSelectedProfile.serviceProfileDesc);
+      
+      // Explicitly set the serviceProfileDesc property
+     
+  } else {
+      //oModel.setProperty("/selectedServiceProfile", null);
+      oModel.setProperty("/selectedServiceProfile/serviceProfileDesc", "");
+  }
+
+  this.onFieldSave();
+  //this.fetchServiceCatalogueData(selectedServiceProfile);
+},
+
+fetchServiceCatalogueData: async function (selectedServiceProfile) {
+  const sServiceCatData = `/fetchServiceCatalogueData(serviceProfileName='${selectedServiceProfile}')`;
+  const oModel = this.getView().getModel();
+
+  try {
+      const aContexts = await oModel.bindList(sServiceCatData).requestContexts();
+      const aServiceProfData = aContexts.map(context => context.getObject());
+
+      console.log("Fetched Data:", aServiceProfData);
+
+      // Value Parameter Table Data
+      const aValueParams = aServiceProfData.filter(item => item.Value_Parameter === true);
+      this.getView().setModel(new sap.ui.model.json.JSONModel({ valueParams: aValueParams }), "ValueParameterModel");
+
+      // Allocation Parameters
+      let aAllocParams = aServiceProfData.filter(item => item.Allocation_Relevant === true);
+      aAllocParams.sort((a, b) => a.Level - b.Level);
+
+      let groupedAllocParams = {};
+      aAllocParams.forEach(item => {
+          if (!groupedAllocParams[item.Level]) {
+              groupedAllocParams[item.Level] = {
+                  Level: item.Level,
+                  serviceParameters: []
+              };
+          }
+          if (!groupedAllocParams[item.Level].serviceParameters.some(param => param.key === item.serviceParameter)) {
+              groupedAllocParams[item.Level].serviceParameters.push({
+                  key: item.serviceParameter,
+                  text: item.serviceParameter
+              });
+          }
+      });
+
+      let finalAllocParams = Object.values(groupedAllocParams);
+      this.getView().setModel(new sap.ui.model.json.JSONModel({ allocParams: finalAllocParams }), "AllocationParameterModel");
+
+      // Clause Code & Threshold Reference Dropdown Data
+      const aClauseCodeParams = aServiceProfData
+          .filter(item => item.Threshold_Relevance === true)
+          .map(item => ({ key: item.serviceParameter, text: item.serviceParameter }));
+
+      const aThresholdRefParams = aServiceProfData
+          .filter(item => item.Referrence_Relevant === true)
+          .map(item => ({ key: item.serviceParameter, text: item.serviceParameter }));
+
+      this.getView().setModel(new sap.ui.model.json.JSONModel({
+          clauseCodes: aClauseCodeParams,
+          thresholdRefs: aThresholdRefParams,
+          rows: [{ clauseCode: "", validFrom: "", validTo: "", threshold: "", thresholdReference: "", remark: "" }]
+      }), "DropdownModel");
+
+  } catch (error) {
+      console.error("Error fetching service profiles:", error);
+  }
+  this.onGetProfile();
+},
 
   onSelectDate: function () {
     var oView = this.getView();

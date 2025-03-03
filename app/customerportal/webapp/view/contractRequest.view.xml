@@ -100,10 +100,13 @@
                     width="200px"
                     selectedKey="ZGSA"
                    change=".onSelectDropdown"
+                   forceSelection="true"
                     class="sapUiLargeMarginBegin"
                 >
-                <core:Item id="conReqItemGSA" key="ZGSA" text="ZGSA" />
-                <core:Item id="conReqItemGTA" key="ZGTA" text="ZGTA" />
+                
+                <core:Item id="conReqItemGSA"  key="{DocumentNo}"
+                        text="{DocumentNo} - {description}" />
+                
                 </Select>
             </VBox>
         </HBox>
@@ -458,11 +461,12 @@
                             class="sapUiTinyMarginBegin"
                         
                         />
-                        <HBox id="conReqServiceProfileID">
+                        <HBox>
                             <Select
                                 id="conReqServiceProfileid"
                                 width="200px"
                                 class="sapUiTinyMarginBegin"
+                                  change="deriveProDesc"
                                 items="{serviceProfileModel>/serviceProfiles}"
                                 selectedKey="{serviceProfileModel>/selectedServiceProfile}"
                             > 
@@ -471,13 +475,19 @@
                                             text="{serviceProfileModel>serviceProfileName}"
                                         />
                                         </Select>
-                            <Input
-                                id="conReqServiceProfileDesc"
-                                width="200px"
-                                editable="false"
-                                visible="false"
-                                class="sapUiTinyMarginBegin"
-                            />
+                                        <HBox
+                                        id="serviceProfDesc_HboxID"
+                                        visible="true"
+                                    >
+                           <Input
+                                            id="servProDesc_ID"
+                                            class="sapUiTinyMarginBegin"
+                                            visible="{= ${serviceProfileModel>/selectedServiceProfile/serviceProfileDesc} ? true : false }"
+                                            editable="false"
+                                            width="200px"
+                                            value="{serviceProfileModel>/selectedServiceProfile/serviceProfileDesc}"
+                                        />
+                                        </HBox>
                         </HBox>
                         <Label
                             id="conReqLabelDPTargetQuantity"
@@ -510,18 +520,25 @@
                             text="Fuel Location"
                             textDirection="LTR"
                             class="sapUiTinyMarginBegin"
-                            visible="{= ${/fuelConsumptionEnabled} === true }"
+                            visible="false"
                         />
-                        <Input
-                            id="conReqFuelLocation"
-                            width="200px"
+                        <Select
+                                    id="fuelRadio"
+                                    width="200px"
+                                    visible="false"
+                                    forceSelection="false" change="onFieldSave"
                             class="sapUiTinyMarginBegin"
-                            showValueHelp="true"
-                            valueHelpOnly="true"
-                            valueHelpRequest=""
-                            value=""
-                            visible="{= ${/fuelConsumptionEnabled} === true }"
-                        />
+
+                                >
+                                    <core:Item
+                                        key="Delivery Point"
+                                        text="Delivery Point"
+                                    />
+                                    <core:Item
+                                        key="Re-Delivery Point"
+                                        text="Re-Delivery Point"
+                                    />
+                                </Select>
                     </VBox>
                 </HBox>
             </VBox>
@@ -693,7 +710,7 @@
 
         <!-- Main HBox to hold Left and Right sections -->
         <Table
-            items="{valueParameterModel>/}"
+            items="{ValueParameterModel>/valueParams}"
             mode="None"
             id="conReqValueParameterTable"
             class="tableBorder sapUiTinyMargin"
@@ -734,12 +751,13 @@
             <items>
                 <ColumnListItem id="conReqColumnListItem10">
                     <cells>
-                        <Text id="conReqServiceParameterText" />
+                        <Text id="conReqServiceParameterText"  text="{ValueParameterModel>serviceParameter}" />
                         <Input
                             id="conReqInputValue"
                             width="100px"
                             change="targetQuantityCal"
                             required="true"
+                            value="{ValueParameterModel>value}"
                         />
                         <Label
                             id="conReqUomUnitDerived"
@@ -783,6 +801,7 @@
         <VBox id="conReqVboxClauseCode">
             <Table
                 id="conReqClCodeTable"
+                items="{DropdownModel>/rows}"
                 class="tableBorder sapUiTinyMargin"
             >
                 <columns>
@@ -844,59 +863,49 @@
                                 id="conReqClCodeSelect1"
                                 forceSelection="false"
                                 width="150px"
+                                 selectedKey="{DropdownModel>clauseCode}"
+                                items="{DropdownModel>/clauseCodes}"
                             >
-                                <core:Item
-                                    id="conReqItemMaxDCQ"
-                                    text="Max DCQ"
-                                />
-                                <core:Item
-                                    id="conReqItemMinDCQ"
-                                    text="Min DCQ"
-                                />
+                                 <core:Item
+                                                    key="{DropdownModel>key}"
+                                                    text="{DropdownModel>text}"
+                                                />
                             </Select>
                             <DatePicker
                                 id="conReqClCodeDatePickerFrom"
                                 width="150px"
-                                value=""
+                                value="{DropdownModel>validFrom}"
                                 required="true"
                             />
                             <DatePicker
                                 id="conReqClCodeDatePickerTo"
                                 width="150px"
-                                value=""
+                                value="{DropdownModel>validTo}"
                                 required="true"
                             />
                             <Input
                                 id="conReqClCodeInputThreshold"
                                 width="100px"
-                                value=""
+                                value="{DropdownModel>threshold}"
                             />
                             <Select
                                 id="conReqClCodeSelect2"
                                 width="150px"
                                 forceSelection="false"
+                                selectedKey="{DropdownModel>thresholdReference}"
+                                items="{DropdownModel>/thresholdRefs}"
                             >
                                 <core:Item
-                                    id="conReqItemDCQ"
-                                    key="DCQ"
-                                    text="DCQ"
-                                />
-                                <core:Item
-                                    id="conReqItemMaxDCQ2"
-                                    key="Max DCQ"
-                                    text="Max DCQ"
-                                />
-                                <core:Item
-                                    id="conReqItemMinDCQ2"
-                                    key="Min DCQ"
-                                    text="Min DCQ"
-                                />
+                                                    key="{DropdownModel>key}"
+                                                    text="{DropdownModel>text}"
+                                                />
                             </Select>
                             <Input
                                 id="conReqClCodeInputThresholdReference"
                                 width="100px"
-                                value=""
+                               value="{DropdownModel>remark}"
                                 required="true"
+
                             />
                             <Button
                                 id="conReqClCodeActionBtn"
@@ -912,7 +921,7 @@
         <!-- ALLOCATION PARAMETER -->
         <Table
             id="conReqAllocTable"
-            items="{allocModel>/allocLevel}"
+            items="{AllocationParameterModel>/allocParams}"
         >
             <headerToolbar>
                 <Toolbar id="conReqToolbarAP">
@@ -942,14 +951,16 @@
                     <cells>
                         <Text
                             id="conReqTextAP"
-                            text="{allocModel>Level}"
+                            text="{AllocationParameterModel>Level}"
                         />
                         <Select
                             id="conReqSelectAP"
-                            selectedKey="{allocModel>selectedParam}"
+                            selectedKey="{AllocationParameterModel>selectedParameter}"
+                    items="{AllocationParameterModel>serviceParameters}"
                             width="200px"
                             forceSelection="false"
                         >
+                         <core:Item key="{AllocationParameterModel>key}" text="{AllocationParameterModel>text}" />
                             <!-- DYNAMIC ITEMS -->
                         </Select>
                     </cells>

@@ -2,6 +2,7 @@ const cds = require('@sap/cds');
 
 module.exports = async (srv) => 
 {        
+    const igmsConfigMetaData = await cds.connect.to("igmsConfigMetaData");
     // Using CDS API      
     const GMSVENDOR_DATA_NAV_CDS = await cds.connect.to("GMSVENDOR_DATA_NAV_CDS"); 
       srv.on('READ', 'xGMSxVendor_Data', req => GMSVENDOR_DATA_NAV_CDS.run(req.query)); 
@@ -72,7 +73,11 @@ module.exports = async (srv) =>
             req.error(500, "Error fetching data: " + error.message);
         }
     });
-
+    srv.on("READ", "DocumentNoProfileMapping", (req) => igmsConfigMetaData.run(req.query));
+    srv.on("READ", "ServiceProfileMaster", (req) => igmsConfigMetaData.run(req.query));
+    srv.on("READ", "serviceProfileParametersItems", (req) => igmsConfigMetaData.run(req.query));
+    srv.on("READ", "serviceParametersItems", (req) => igmsConfigMetaData.run(req.query));
+    srv.on("READ", "pathAndFuelMapping", (req) => igmsConfigMetaData.run(req.query));
     srv.on("getServiceProfile", async (req) => {
         const { documentNo } = req.data;
 
@@ -93,7 +98,76 @@ module.exports = async (srv) =>
             req.error(500, "Internal Server Error");
         }
     });
+
+    srv.on("fetchServiceCatalogueData", async (req) => {
+        const { serviceProfileName } = req.data;
+        
+        if (!serviceProfileName) {
+            req.reject(400, "Service Profile Name is required");
+        }
+    
+        // Fetch service profile parameters items
+        const serviceCatalogueData = await igmsConfigMetaData.run(
+            SELECT.from("serviceProfileParametersItems")
+                .where({ serviceProfileName, ContractRelevant: true })
+        );
+    
+        // Extract serviceParameters from fetched data
+        const serviceParameters = serviceCatalogueData.map(item => item.serviceParameter);
+    
+        if (serviceParameters.length === 0) {
+            return serviceCatalogueData; // No parameters to fetch levels for
+        }
+    
+        // Fetch corresponding Level for each serviceParameter
+        const allocationLevels = await igmsConfigMetaData.run(
+            SELECT.from("serviceParametersItems")
+                .where({ serviceParameter: { in: serviceParameters } })
+        );
+    
+        // Create a map for quick lookup
+        const levelMap = allocationLevels.reduce((map, item) => {
+            map[item.serviceParameter] = item.Level; // Assuming "Level" is the column name
+            return map;
+        }, {});
+    
+        // Attach Level to serviceCatalogueData
+        serviceCatalogueData.forEach(item => {
+            item.Level = levelMap[item.serviceParameter] || null;
+        });
+    
+        return serviceCatalogueData;
+    });
+
+    srv.on("getPathandfuellocation", async (req) => {
+        const { DeliveryPoint, ReDeliveryPoint } = req.data;
+        
+        if (!DeliveryPoint && !ReDeliveryPoint) {
+            req.reject(400, "location is required");
+        }
+        
+        return igmsConfigMetaData.run(
+            SELECT.from("pathAndFuelMapping")
+                .where({ DeliveryPoint ,ReDeliveryPoint})
+        );
+    });
      
+    
+
+
+      // Custom handler for fetch path and fuel location for create contract function
+      srv.on("getPathandfuellocation", async (req) => {
+        const { DeliveryPoint, ReDeliveryPoint } = req.data;
+        
+        if (!DeliveryPoint && !ReDeliveryPoint) {
+            req.reject(400, "location is required");
+        }
+        
+        return igmsConfigMetaData.run(
+            SELECT.from("pathAndFuelMapping")
+                .where({ DeliveryPoint ,ReDeliveryPoint})
+        );
+    });
     srv.on('getSoldtoPartyData', async (req) => {
         const { Sold_Party } = req.data;  // Extract the BillingDate from the request data
 

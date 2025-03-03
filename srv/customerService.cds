@@ -6,6 +6,7 @@ using ZSALES_CONTRACT_CDS from './external/ZSALES_CONTRACT_CDS.cds';
 using GMSTICKET_API_SRV from './external/GMSTICKET_API_SRV.cds';
 using GMSMATERIAL_DATA_CDS from './external/GMSMATERIAL_DATA_CDS.cds';
 using GMSVALUEHELP_SRV from './external/GMSVALUEHELP_SRV.cds';
+using { igmsConfigMetaData } from './external/igmsConfigMetaData'; 
 
 
 service customerportalservice {
@@ -76,6 +77,48 @@ service customerportalservice {
                 FuelPercentage,
                 DocType
         };
+
+           function fetchServiceCatalogueData(serviceProfileName : String)                                                                   returns array of {
+        checkedParameter : Boolean;
+        serviceProfileName : String;
+        serviceProfileDesc : String;
+        ProfileId : String;
+        ID : Integer;
+        serviceParameter : String;
+        serviceParameterDesc : String;
+        serviceParameterType : String;
+        serviceParameterlength : Integer;
+        ParentId : String;
+        ContractRelevant : Boolean;
+        Value_Parameter : Boolean;
+        Threshold_Relevance : Boolean;
+        Referrence_Relevant : Boolean;
+        Nomination_Relevant : Boolean;
+        Balancing_Relevant : Boolean;
+        Allocation_Relevant : Boolean;
+        Billing_Relevant : Boolean;
+        Price_Relevant : Boolean;
+
+    };
+
+    function getPathandfuellocation(DeliveryPoint : String, ReDeliveryPoint : String)                                                 returns array of {
+        DeliveryPoint : String;
+        DpTsSystem : String;
+        ReDeliveryPoint : String;
+        RDpTsSystem : String;
+        InterconnectPath : String;
+        Interconnect : String;
+        path : String;
+        FuelPercentage : Decimal;
+
+    };
+
+
+        entity DocumentNoProfileMapping      as projection on igmsConfigMetaData.DocumentNoProfileMapping;
+    entity ServiceProfileMaster          as projection on igmsConfigMetaData.ServiceProfileMaster;
+    entity serviceProfileParametersItems as projection on igmsConfigMetaData.serviceProfileParametersItems;
+    entity serviceParametersItems        as projection on igmsConfigMetaData.serviceParametersItems;
+    entity pathAndFuelMapping            as projection on igmsConfigMetaData.pathAndFuelMapping;
 
     entity ZNOMMASTER5          as
         projection on GMSNOMCP_GMS_SRV.ZNOMMASTER5 {

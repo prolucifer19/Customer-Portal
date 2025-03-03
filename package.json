@@ -162,9 +162,15 @@
             "path": "/sap/opu/odata/gms/VALUEHELP_SRV"
           }
         },
-        
         "csrf": true,
         "csrfInBatch": true
+      },
+      "igmsConfigMetaData": {
+        "kind": "odata",
+        "model": "srv/external/igmsConfigMetaData",
+        "credentials": {
+          "destination": "GMS_CONFIG_SRV"
+        }
       }
     }
   }
